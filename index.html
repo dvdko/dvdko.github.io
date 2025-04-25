@@ -13,15 +13,15 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
-      color: #fff;
+      background-color: #ffffff; /* Primary background */
+      color: #000000; /* Secondary shade for text */
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
     header {
-      background-color: #121212;
+      background-color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -29,32 +29,25 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid #e0e0e0;
     }
 
     .logo-img {
-      height: 40px;
+      height: 60px;
       width: auto;
       display: block;
-    }
-
-    .brand {
-      font-size: 1.5em;
-      font-weight: bold;
-      text-decoration: none;
-      color: #fff;
     }
 
     nav a {
       margin-left: 25px;
       text-decoration: none;
-      color: #ccc;
+      color: #000000;
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #fff;
+      color: #BFFF00; /* Accent color */
     }
 
     .hero {
@@ -64,17 +57,18 @@
       justify-content: center;
       text-align: center;
       padding: 120px 20px 80px;
-      background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+      background: linear-gradient(to bottom, #ffffff, #f9f9f9);
     }
 
     .hero h1 {
       font-size: 3em;
       margin-bottom: 20px;
+      color: #000000;
     }
 
     .hero p {
       font-size: 1.2em;
-      color: #ccc;
+      color: #444444;
       max-width: 600px;
     }
 
@@ -85,35 +79,47 @@
     }
 
     footer {
-      background-color: #121212;
+      background-color: #ffffff;
       padding: 30px 20px;
       text-align: center;
+      border-top: 1px solid #e0e0e0;
     }
 
     .social-icons a {
       display: inline-block;
       margin: 0 10px;
-      transition: opacity 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
     .social-icons a:hover {
-      opacity: 0.8;
+      transform: scale(1.1);
     }
 
     .social-icons svg {
       width: 24px;
       height: 24px;
-      fill: #ccc;
+      fill: #000000;
       transition: fill 0.3s ease;
     }
 
     .social-icons a:hover svg {
-      fill: #fff;
+      fill: #BFFF00;
+    }
+
+    footer img {
+      height: 24px;
+      vertical-align: middle;
+      filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(0deg) brightness(100%) contrast(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .social-icons a:hover img {
+      filter: brightness(0) saturate(100%) invert(80%) sepia(50%) saturate(500%) hue-rotate(40deg) brightness(100%) contrast(100%);
     }
 
     footer p {
       margin-top: 15px;
-      color: #777;
+      color: #666;
       font-size: 0.9em;
     }
   </style>
@@ -139,7 +145,6 @@
   </section>
 
   <main>
-    <!-- Portfolio and content go here -->
     <h2>Coming Soon</h2>
     <p>Full portfolio and brand collaborations work in progress.</p>
   </main>
@@ -155,7 +160,7 @@
         <svg viewBox="0 0 24 24"><path d="M5.91 2L2 18.09 18.09 22 22 5.91 5.91 2zm4.24 11.85L9.57 9.6l4.24 1.18-1.66 4.07z"/></svg>
       </a>
       <a href="https://dvdko.carrd.co" target="_blank" aria-label="Carrd">
-        <img src="https://carrd.co/assets/docs/images/brand/svg/icon-dark.svg" alt="Carrd" style="height: 24px; vertical-align: middle;" />
+        <img src="https://carrd.co/assets/docs/images/brand/svg/icon-dark.svg" alt="Carrd Logo"/>
       </a>
     </div>
     <p>© 2025 dvdko. All rights reserved.</p>
