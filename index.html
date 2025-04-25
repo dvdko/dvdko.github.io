@@ -1,80 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>dvdko</title>
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       min-height: 100vh;
-      margin: 0;
     }
 
-    header, footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1a1a1a;
-      width: 100%;
+    header {
+      background-color: #121212;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand {
+      font-size: 1.5em;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #ccc;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
     }
 
     main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      flex-grow: 1;
+      padding: 60px 20px;
+      text-align: center;
     }
 
-    h1 {
-      margin-bottom: 30px;
-      font-size: 2em;
+    footer {
+      background-color: #121212;
+      padding: 20px 40px;
+      text-align: center;
     }
 
-    a {
-      display: block;
-      margin: 10px 0;
-      padding: 10px 20px;
-      background: #1e1e1e;
-      color: #ffffff;
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
       text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.2s ease;
+      color: #ccc;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
     }
 
-    a:hover {
-      background: #333333;
-    }
-
-    footer small {
-      color: #999999;
+    .social-icons a:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h2>dvdko's Links</h2>
+    <a href="/" class="brand">dvdko</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#brands">Brands</a>
+      <a href="#about">About Me</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <main>
     <h1>dvdko</h1>
-    <a href="https://dvdko.carrd.co" target="_blank">Carrd</a>
-    <a href="https://x.com/dvdko_" target="_blank">Twitter</a>
-    <a href="https://www.roblox.com/communities/13794825/dvdko#!/store" target="_blank">Roblox Store</a>
-    <a href="https://www.roblox.com/users/28276317/profile" target="_blank">Roblox Profile</a>
+    <p>Roblox UGC Creator</p>
   </main>
 
   <footer>
-    <small>© 2025 dvdko. All rights reserved.</small>
+    <div class="social-icons">
+      <a href="https://x.com/dvdko_" target="_blank">Twitter</a>
+      <a href="https://www.roblox.com/users/28276317/profile" target="_blank">Roblox</a>
+      <a href="https://dvdko.carrd.co" target="_blank">Carrd</a>
+    </div>
+    <p style="margin-top: 10px; color: #777;">© 2025 dvdko. All rights reserved.</p>
   </footer>
 
 </body>
