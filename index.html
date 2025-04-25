@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>dvdko</title>
+  <title>dvdko | Virtual Fashion</title>
   <style>
     * {
       box-sizing: border-box;
@@ -51,6 +51,27 @@
       color: #fff;
     }
 
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #ccc;
+      max-width: 600px;
+    }
+
     main {
       flex-grow: 1;
       padding: 60px 20px;
@@ -59,21 +80,35 @@
 
     footer {
       background-color: #121212;
-      padding: 20px 40px;
+      padding: 30px 20px;
       text-align: center;
     }
 
     .social-icons a {
       display: inline-block;
       margin: 0 10px;
-      text-decoration: none;
-      color: #ccc;
-      font-size: 1.2em;
-      transition: color 0.3s ease;
+      transition: opacity 0.3s ease;
     }
 
     .social-icons a:hover {
-      color: #fff;
+      opacity: 0.8;
+    }
+
+    .social-icons svg {
+      width: 24px;
+      height: 24px;
+      fill: #ccc;
+      transition: fill 0.3s ease;
+    }
+
+    .social-icons a:hover svg {
+      fill: #fff;
+    }
+
+    footer p {
+      margin-top: 15px;
+      color: #777;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -90,18 +125,30 @@
     </nav>
   </header>
 
+  <section class="hero">
+    <h1>Virtual Fashion by dvdko</h1>
+    <p>Design-forward digital apparel. Browse my creative universe — where style meets the metaverse.</p>
+  </section>
+
   <main>
-    <h1>dvdko</h1>
-    <p>Roblox UGC Creator</p>
+    <!-- Portfolio and content go here -->
+    <h2>Coming Soon</h2>
+    <p>Full portfolio and brand collaborations launching soon.</p>
   </main>
 
   <footer>
     <div class="social-icons">
-      <a href="https://x.com/dvdko_" target="_blank">Twitter</a>
-      <a href="https://www.roblox.com/users/28276317/profile" target="_blank">Roblox</a>
-      <a href="https://dvdko.carrd.co" target="_blank">Carrd</a>
+      <a href="https://x.com/dvdko_" target="_blank" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.27 4.27 0 001.88-2.36 8.44 8.44 0 01-2.68 1.02 4.22 4.22 0 00-7.2 3.85A11.96 11.96 0 013 5.14a4.22 4.22 0 001.31 5.63 4.2 4.2 0 01-1.91-.53v.05a4.22 4.22 0 003.39 4.13 4.26 4.26 0 01-1.9.07 4.22 4.22 0 003.94 2.93A8.47 8.47 0 012 19.54a11.93 11.93 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.35-.01-.53A8.36 8.36 0 0022.46 6z"/></svg>
+      </a>
+      <a href="https://www.roblox.com/users/28276317/profile" target="_blank" aria-label="Roblox">
+        <svg viewBox="0 0 24 24"><path d="M5.91 2L2 18.09 18.09 22 22 5.91 5.91 2zm4.24 11.85L9.57 9.6l4.24 1.18-1.66 4.07z"/></svg>
+      </a>
+      <a href="https://dvdko.carrd.co" target="_blank" aria-label="Carrd">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.84 4.19 10.67 9.68 11.81V14.8H6.77v-2.8h2.91v-2.14c0-2.88 1.7-4.47 4.31-4.47 1.25 0 2.56.22 2.56.22v2.81h-1.44c-1.42 0-1.87.88-1.87 1.77V12h3.18l-.51 2.8h-2.67v9.01C19.81 22.67 24 17.84 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
     </div>
-    <p style="margin-top: 10px; color: #777;">© 2025 dvdko. All rights reserved.</p>
+    <p>© 2025 dvdko. All rights reserved.</p>
   </footer>
 
 </body>
