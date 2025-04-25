@@ -5,20 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>dvdko Links</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #0f0f0f;
       color: #ffffff;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: space-between;
+      min-height: 100vh;
       margin: 0;
     }
-    h1 {
-      margin-bottom: 20px;
+
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1a1a;
+      width: 100%;
     }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
     a {
       display: block;
       margin: 10px 0;
@@ -29,16 +49,33 @@
       border-radius: 8px;
       transition: background 0.2s ease;
     }
+
     a:hover {
       background: #333333;
+    }
+
+    footer small {
+      color: #999999;
     }
   </style>
 </head>
 <body>
-  <h1>dvdko Links</h1>
-  <a href="https://dvdko.carrd.co" target="_blank">Carrd</a>
-  <a href="https://x.com/dvdko_" target="_blank">Twitter</a>
-  <a href="https://www.roblox.com/communities/13794825/dvdko#!/store" target="_blank">Roblox Store</a>
-  <a href="https://www.roblox.com/users/28276317/profile" target="_blank">Roblox Profile</a>
+
+  <header>
+    <h2>Welcome to dvdko's Links</h2>
+  </header>
+
+  <main>
+    <h1>dvdko</h1>
+    <a href="https://dvdko.carrd.co" target="_blank">Carrd</a>
+    <a href="https://x.com/dvdko_" target="_blank">Twitter</a>
+    <a href="https://www.roblox.com/communities/13794825/dvdko#!/store" target="_blank">Roblox Store</a>
+    <a href="https://www.roblox.com/users/28276317/profile" target="_blank">Roblox Profile</a>
+  </main>
+
+  <footer>
+    <small>© 2025 dvdko. All rights reserved.</small>
+  </footer>
+
 </body>
 </html>
