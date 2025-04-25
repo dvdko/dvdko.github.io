@@ -13,9 +13,16 @@
     }
 
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      width: 100%;
+      max-width: 1200px; /* Max width for large screens */
+      margin: 0 auto; /* Center the container */
+      padding: 0 20px; /* Add some spacing on smaller screens */
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px; /* Reduce padding on smaller screens */
+      }
     }
 
     .brand {
