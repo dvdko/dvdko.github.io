@@ -497,7 +497,7 @@
             </button>
             <div class="nav-links">
                 <a href="#portfolio">PORTFOLIO</a>
-                <a href="#about">ABOUT</a>
+                <a href="/#/about">ABOUT</a>
                 <a href="#contact">CONTACT</a>
             </div>
         </div>
@@ -717,41 +717,36 @@
         // Initial update
         updateCarousel();
 
-        // History API routing for About page
-        const aboutLink = document.querySelector('.nav-links a[href="#about"]');
+        // Hash routing for About page
+        const aboutLink = document.querySelector('.nav-links a[href="/#/about"]');
         const aboutSection = document.querySelector('.about-section');
         const heroSection = document.querySelector('.hero');
         const featuredSection = document.querySelector('.featured');
 
-        function showAboutPage(push = true) {
+        function showAboutPage() {
             heroSection.style.display = 'none';
             featuredSection.style.display = 'none';
             aboutSection.style.display = 'block';
-            if (push) history.pushState({page: 'about'}, '', '/about');
         }
-        function showHomePage(push = true) {
+        function showHomePage() {
             heroSection.style.display = '';
             featuredSection.style.display = '';
             aboutSection.style.display = 'none';
-            if (push) history.pushState({page: 'home'}, '', '/');
+        }
+        function handleHashRouting() {
+            if (location.hash === '#/about') {
+                showAboutPage();
+            } else {
+                showHomePage();
+            }
         }
         aboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showAboutPage();
+            // No preventDefault needed, hash will update
+            setTimeout(handleHashRouting, 0); // ensure hash is updated
         });
-        window.addEventListener('popstate', function(e) {
-            if (location.pathname === '/about') {
-                showAboutPage(false);
-            } else {
-                showHomePage(false);
-            }
-        });
+        window.addEventListener('hashchange', handleHashRouting);
         // On page load, show correct section
-        if (location.pathname === '/about') {
-            showAboutPage(false);
-        } else {
-            showHomePage(false);
-        }
+        handleHashRouting();
     </script>
 </body>
 </html> 
