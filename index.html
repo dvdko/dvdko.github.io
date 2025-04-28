@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dvdko | Roblox UGC Creator</title>
     <link rel="icon" type="image/png" href="public/dvdko_Logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oleo+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
@@ -44,10 +44,8 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(41, 45, 62, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(105, 112, 152, 0.2);
-            height: 80px;
+            background: transparent;
+            height: 100px;
         }
 
         .nav-container {
@@ -59,7 +57,7 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.8rem;
             font-weight: 400;
             text-transform: lowercase;
             letter-spacing: 1px;
@@ -247,7 +245,7 @@
             .nav-links {
                 display: none;
                 position: fixed;
-                top: 80px;
+                top: 100px;
                 left: 0;
                 right: 0;
                 bottom: 0;
@@ -260,7 +258,7 @@
                 opacity: 0;
                 visibility: hidden;
                 transition: all 0.3s ease;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 100px);
             }
 
             .nav-links.active {
@@ -286,9 +284,10 @@
         }
 
         .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-direction: row;
             gap: 2rem;
+            transition: transform 0.5s ease;
         }
 
         .featured-item {
@@ -297,7 +296,7 @@
         }
 
         .featured-item:hover {
-            transform: translateY(-5px);
+            /* No hover effect */
         }
 
         .featured-image {
@@ -305,17 +304,21 @@
             overflow: hidden;
             border-radius: 8px;
             aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .featured-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);
         }
 
         .featured-item:hover .featured-image img {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);
         }
 
         .featured-info {
@@ -337,13 +340,13 @@
 
         @media (max-width: 1200px) {
             .featured-grid {
-                grid-template-columns: repeat(2, 1fr);
+                /* No grid-template-columns needed for flex layout */
             }
         }
 
         @media (max-width: 768px) {
             .featured-grid {
-                grid-template-columns: 1fr;
+                /* No grid-template-columns needed for flex layout */
                 gap: 3rem;
             }
 
@@ -357,7 +360,7 @@
             z-index: 3;
             background-color: var(--bg-primary);
             padding: 3rem 0;
-            border-top: 1px solid rgba(105, 112, 152, 0.2);
+            /* border-top: 1px solid rgba(105, 112, 152, 0.2); */
         }
 
         .footer-content {
@@ -405,6 +408,82 @@
             height: 24px;
             fill: currentColor;
         }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .carousel-viewport {
+            overflow: hidden;
+            width: calc((100% / 4) * 4); /* Show 4 items at a time on desktop */
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 2rem;
+            color: #333;
+            z-index: 2;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            line-height: 1;
+            transition: background 0.3s, color 0.3s;
+        }
+        .carousel-arrow.left {
+            left: -28px;
+        }
+        .carousel-arrow.right {
+            right: -28px;
+        }
+        .carousel-arrow:disabled {
+            cursor: default;
+            background: #fff;
+            color: #333;
+        }
+        .carousel-arrow:hover,
+        .carousel-arrow:active {
+            background: var(--accent-secondary);
+            color: #fff;
+        }
+        .featured-item {
+            min-width: calc(25% - 1.5rem); /* 4 items per view, minus gap */
+            box-sizing: border-box;
+        }
+        @media (max-width: 1200px) {
+            .carousel-viewport {
+                width: calc((100% / 2) * 2); /* Show 2 items at a time */
+            }
+            .featured-item {
+                min-width: calc(50% - 1rem);
+            }
+        }
+        @media (max-width: 768px) {
+            .carousel-viewport {
+                width: 100%; /* Show 1 item at a time */
+            }
+            .featured-item {
+                min-width: 100%;
+            }
+            .carousel-arrow.left, .carousel-arrow.right {
+                left: 0;
+                right: 0;
+                top: auto;
+                bottom: -50px;
+                transform: none;
+            }
+            .carousel-arrow.right { left: 50px; }
+        }
     </style>
 </head>
 <body>
@@ -442,45 +521,75 @@
         </div>
     </section>
 
+    <section class="about-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: var(--bg-secondary);">
+        <div class="container">
+            <h1 style="font-size:2.5rem; margin-bottom:1.5rem;">About</h1>
+            <p style="font-size:1.2rem; color:var(--text-secondary); max-width:700px;">This is the About page for dvdko.</p>
+        </div>
+    </section>
+
     <section class="featured">
         <div class="container">
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <div class="featured-image">
-                        <img src="https://placehold.co/500x500" alt="Featured Item 1">
-                    </div>
-                    <div class="featured-info">
-                        <p class="featured-subtitle">starry mari</p>
-                        <h3 class="featured-title">dvdko x superiorMARI</h3>
+            <div class="carousel-wrapper" style="position: relative;">
+                <button class="carousel-arrow left" aria-label="Previous" disabled>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 15L8 10L12.5 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="carousel-viewport">
+                    <div class="featured-grid">
+                        <div class="featured-item">
+                            <div class="featured-image">
+                                <img src="https://placehold.co/500x500" alt="Featured Item 1">
+                            </div>
+                            <div class="featured-info">
+                                <p class="featured-subtitle">starry mari</p>
+                                <h3 class="featured-title">dvdko x superiorMARI</h3>
+                            </div>
+                        </div>
+                        <div class="featured-item">
+                            <div class="featured-image">
+                                <img src="https://placehold.co/500x500" alt="Featured Item 2">
+                            </div>
+                            <div class="featured-info">
+                                <p class="featured-subtitle">Walmart Discovered</p>
+                                <h3 class="featured-title">dvdko x Walmart</h3>
+                            </div>
+                        </div>
+                        <div class="featured-item">
+                            <div class="featured-image">
+                                <img src="https://placehold.co/500x500" alt="Featured Item 3">
+                            </div>
+                            <div class="featured-info">
+                                <p class="featured-subtitle">YNEZ</p>
+                                <h3 class="featured-title">dvdko x ImSleb</h3>
+                            </div>
+                        </div>
+                        <div class="featured-item">
+                            <div class="featured-image">
+                                <img src="https://placehold.co/500x500" alt="Featured Item 4">
+                            </div>
+                            <div class="featured-info">
+                                <p class="featured-subtitle">The Hunt: Mega Edition</p>
+                                <h3 class="featured-title">dvdko x Roblox</h3>
+                            </div>
+                        </div>
+                        <div class="featured-item">
+                            <div class="featured-image">
+                                <img src="https://placehold.co/500x500" alt="Featured Item 5">
+                            </div>
+                            <div class="featured-info">
+                                <p class="featured-subtitle">???</p>
+                                <h3 class="featured-title">dvdko x Kyuzu</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="featured-item">
-                    <div class="featured-image">
-                        <img src="https://placehold.co/500x500" alt="Featured Item 2">
-                    </div>
-                    <div class="featured-info">
-                        <p class="featured-subtitle">Walmart Discovered</p>
-                        <h3 class="featured-title">dvdko x Walmart</h3>
-                    </div>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-image">
-                        <img src="https://placehold.co/500x500" alt="Featured Item 3">
-                    </div>
-                    <div class="featured-info">
-                        <p class="featured-subtitle">YNEZ</p>
-                        <h3 class="featured-title">dvdko x ImSleb</h3>
-                    </div>
-                </div>
-                <div class="featured-item">
-                    <div class="featured-image">
-                        <img src="https://placehold.co/500x500" alt="Featured Item 4">
-                    </div>
-                    <div class="featured-info">
-                        <p class="featured-subtitle">The Hunt: Mega Edition</p>
-                        <h3 class="featured-title">dvdko x Roblox</h3>
-                    </div>
-                </div>
+                <button class="carousel-arrow right" aria-label="Next">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 5L12 10L7.5 15" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -525,8 +634,8 @@
         // Fade out hero content on scroll
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
-            const fadeStart = 300; // Start fading when scrolled 300px
-            const fadeEnd = 600; // Completely faded by 600px
+            const fadeStart = 300;
+            const fadeEnd = 600;
             
             if (scrollPosition <= fadeStart) {
                 heroContent.style.opacity = 1;
@@ -537,6 +646,112 @@
                 heroContent.style.opacity = opacity;
             }
         });
+
+        // Carousel functionality for featured section
+        const grid = document.querySelector('.featured-grid');
+        const leftArrow = document.querySelector('.carousel-arrow.left');
+        const rightArrow = document.querySelector('.carousel-arrow.right');
+        const items = document.querySelectorAll('.featured-item');
+        let scrollIndex = 0;
+
+        function getItemsPerView() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1200) return 2;
+            return 4;
+        }
+
+        function getImageVerticalOffset() {
+            // Get the first visible image's bounding rect relative to the viewport
+            const firstImage = document.querySelector('.featured-image img');
+            const viewport = document.querySelector('.carousel-viewport');
+            if (!firstImage || !viewport) return 0;
+            const viewportRect = viewport.getBoundingClientRect();
+            const imageRect = firstImage.getBoundingClientRect();
+            return imageRect.top - viewportRect.top + imageRect.height / 2;
+        }
+
+        function updateArrowVerticalPosition() {
+            // Vertically center arrows with the first visible image
+            const firstImage = document.querySelector('.featured-image img');
+            const wrapper = document.querySelector('.carousel-wrapper');
+            if (!firstImage || !wrapper) return;
+            const wrapperRect = wrapper.getBoundingClientRect();
+            const imageRect = firstImage.getBoundingClientRect();
+            // Center with image, but keep arrows outside the image area
+            const offset = imageRect.top - wrapperRect.top + imageRect.height / 2;
+            leftArrow.style.top = rightArrow.style.top = offset + 'px';
+        }
+
+        function updateCarousel() {
+            const itemsPerView = getItemsPerView();
+            const itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(grid).gap) || 0;
+            grid.style.transform = `translateX(-${scrollIndex * itemWidth}px)`;
+            leftArrow.disabled = scrollIndex === 0;
+            rightArrow.disabled = scrollIndex >= items.length - itemsPerView;
+            updateArrowVerticalPosition();
+        }
+
+        leftArrow.addEventListener('click', () => {
+            if (scrollIndex > 0) {
+                scrollIndex--;
+                updateCarousel();
+            }
+        });
+        rightArrow.addEventListener('click', () => {
+            const itemsPerView = getItemsPerView();
+            if (scrollIndex < items.length - itemsPerView) {
+                scrollIndex++;
+                updateCarousel();
+            }
+        });
+        window.addEventListener('resize', () => {
+            // Reset scrollIndex if needed
+            const itemsPerView = getItemsPerView();
+            if (scrollIndex > items.length - itemsPerView) {
+                scrollIndex = Math.max(0, items.length - itemsPerView);
+            }
+            updateCarousel();
+        });
+        window.addEventListener('load', updateArrowVerticalPosition);
+        window.addEventListener('resize', updateArrowVerticalPosition);
+        // Initial update
+        updateCarousel();
+
+        // History API routing for About page
+        const aboutLink = document.querySelector('.nav-links a[href="#about"]');
+        const aboutSection = document.querySelector('.about-section');
+        const heroSection = document.querySelector('.hero');
+        const featuredSection = document.querySelector('.featured');
+
+        function showAboutPage(push = true) {
+            heroSection.style.display = 'none';
+            featuredSection.style.display = 'none';
+            aboutSection.style.display = 'block';
+            if (push) history.pushState({page: 'about'}, '', '/about');
+        }
+        function showHomePage(push = true) {
+            heroSection.style.display = '';
+            featuredSection.style.display = '';
+            aboutSection.style.display = 'none';
+            if (push) history.pushState({page: 'home'}, '', '/');
+        }
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showAboutPage();
+        });
+        window.addEventListener('popstate', function(e) {
+            if (location.pathname === '/about') {
+                showAboutPage(false);
+            } else {
+                showHomePage(false);
+            }
+        });
+        // On page load, show correct section
+        if (location.pathname === '/about') {
+            showAboutPage(false);
+        } else {
+            showHomePage(false);
+        }
     </script>
 </body>
 </html> 
