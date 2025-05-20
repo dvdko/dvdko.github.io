@@ -317,7 +317,7 @@
             position: relative;
             z-index: 3;
             padding: 6rem 0;
-            background-color: var(--bg-secondary);
+            background-color: #FFFFFF;
         }
 
         .featured-grid {
@@ -365,13 +365,13 @@
 
         .featured-subtitle {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #666666;
             margin-bottom: 0.5rem;
         }
 
         .featured-title {
             font-size: 1.1rem;
-            color: var(--text-primary);
+            color: #1A1A1A;
             font-weight: 600;
         }
 
@@ -460,13 +460,13 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: #fff;
-            border: none;
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             font-size: 2rem;
-            color: #333;
+            color: #1A1A1A;
             z-index: 2;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -485,13 +485,18 @@
         }
         .carousel-arrow:disabled {
             cursor: default;
-            background: #fff;
-            color: #333;
+            background: #FFFFFF;
+            color: #CCCCCC;
+            border-color: #E5E5E5;
         }
         .carousel-arrow:hover,
         .carousel-arrow:active {
             background: var(--accent-secondary);
-            color: #fff;
+            color: #FFFFFF;
+            border-color: var(--accent-secondary);
+        }
+        .carousel-arrow svg path {
+            stroke: currentColor;
         }
         .featured-item {
             min-width: calc(25% - 1.5rem); /* 4 items per view, minus gap */
