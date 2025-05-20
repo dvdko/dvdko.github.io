@@ -509,9 +509,9 @@
                 <span></span>
             </button>
             <div class="nav-links">
-                <a href="#portfolio">WORKS</a>
+                <a href="/#/works">WORKS</a>
                 <a href="/#/about">ABOUT</a>
-                <a href="#contact">CONTACT</a>
+                <a href="/#/contact">CONTACT</a>
             </div>
         </div>
     </nav>
@@ -542,19 +542,21 @@
     <section class="about-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: var(--bg-secondary);">
         <div class="container">
             <h1 style="font-size:2.5rem; margin-bottom:1.5rem;">About</h1>
-            <p style="font-size:1.2rem; color:var(--text-secondary); max-width:700px;">
-                dvdko
-                Virtual Fashion Designer | UGC Creator, 3D Artist
-                
-                Greetings! I'm dvdko. I am a 3D artist and UGC creator on Roblox.
-                I have been on the Roblox platform for about 12 years and 3D modeling for 6 years.
-                I have been creating UGC on Roblox for 4 years, designing virtual fashion products such as accessories, layered clothing, avatar bundles, and dynamic heads.
-                
-                • 3,000+ UGC items
-                • 25,000,000+ UGC sales
-                • 160,000+ supporters
-                • 10,500,000+ engagements in "Catalog Avatar Creator" storefront
-            </p>
+            <p style="font-size:1.2rem; color:var(--text-secondary); max-width:700px;">Website is currently a work in progress.</p>
+        </div>
+    </section>
+
+    <section class="works-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: var(--bg-secondary);">
+        <div class="container">
+            <h1 style="font-size:2.5rem; margin-bottom:1.5rem;">Works</h1>
+            <p style="font-size:1.2rem; color:var(--text-secondary); max-width:700px;">Website is currently a work in progress.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: var(--bg-secondary);">
+        <div class="container">
+            <h1 style="font-size:2.5rem; margin-bottom:1.5rem;">Contact</h1>
+            <p style="font-size:1.2rem; color:var(--text-secondary); max-width:700px;">Website is currently a work in progress.</p>
         </div>
     </section>
 
@@ -749,7 +751,11 @@
 
         // Hash routing for About page
         const aboutLink = document.querySelector('.nav-links a[href="/#/about"]');
+        const worksLink = document.querySelector('.nav-links a[href="/#/works"]');
+        const contactLink = document.querySelector('.nav-links a[href="/#/contact"]');
         const aboutSection = document.querySelector('.about-section');
+        const worksSection = document.querySelector('.works-section');
+        const contactSection = document.querySelector('.contact-section');
         const heroSection = document.querySelector('.hero');
         const featuredSection = document.querySelector('.featured');
 
@@ -757,23 +763,58 @@
             heroSection.style.display = 'none';
             featuredSection.style.display = 'none';
             aboutSection.style.display = 'block';
+            worksSection.style.display = 'none';
+            contactSection.style.display = 'none';
         }
+
+        function showWorksPage() {
+            heroSection.style.display = 'none';
+            featuredSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+            worksSection.style.display = 'block';
+            contactSection.style.display = 'none';
+        }
+
+        function showContactPage() {
+            heroSection.style.display = 'none';
+            featuredSection.style.display = 'none';
+            aboutSection.style.display = 'none';
+            worksSection.style.display = 'none';
+            contactSection.style.display = 'block';
+        }
+
         function showHomePage() {
             heroSection.style.display = '';
             featuredSection.style.display = '';
             aboutSection.style.display = 'none';
+            worksSection.style.display = 'none';
+            contactSection.style.display = 'none';
         }
+
         function handleHashRouting() {
             if (location.hash === '#/about') {
                 showAboutPage();
+            } else if (location.hash === '#/works') {
+                showWorksPage();
+            } else if (location.hash === '#/contact') {
+                showContactPage();
             } else {
                 showHomePage();
             }
         }
+
         aboutLink.addEventListener('click', function(e) {
-            // No preventDefault needed, hash will update
-            setTimeout(handleHashRouting, 0); // ensure hash is updated
+            setTimeout(handleHashRouting, 0);
         });
+
+        worksLink.addEventListener('click', function(e) {
+            setTimeout(handleHashRouting, 0);
+        });
+
+        contactLink.addEventListener('click', function(e) {
+            setTimeout(handleHashRouting, 0);
+        });
+
         window.addEventListener('hashchange', handleHashRouting);
         // On page load, show correct section
         handleHashRouting();
