@@ -683,9 +683,37 @@
         </div>
     </section>
 
-    <section class="banner">
-        <div class="container">
-            <img src="/public/RIA24.jpeg" alt="RIA24 Banner" style="width: 100%; height: auto; display: block;">
+    <section class="banner" style="position: relative; z-index: 3; overflow: hidden;">
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/public/RIA24_Cubes.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px) brightness(1.2);
+            transform: scale(1.1);
+            z-index: 1;
+        "></div>
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(22, 24, 33, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2;
+        "></div>
+        <div class="container" style="position: relative; z-index: 3;">
+            <img 
+                src="/public/RIA.jpeg" 
+                alt="RIA Banner" 
+                style="width: 100%; height: auto; display: block;"
+            >
         </div>
     </section>
 
