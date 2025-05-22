@@ -658,6 +658,12 @@
         </div>
     </section>
 
+    <section class="scrolling-banner" style="background-color: var(--accent-secondary); color: var(--bg-primary); padding: 1rem 0; overflow: hidden; white-space: nowrap;">
+        <div style="display: inline-block; animation: scroll 15s linear infinite;">
+            Roblox Innovation Awards 2024 nominee for "Best Original UGC" - Roblox Innovation Awards 2024 nominee for "Best Original UGC" - Roblox Innovation Awards 2024 nominee for "Best Original UGC" - Roblox Innovation Awards 2024 nominee for "Best Original UGC" -
+        </div>
+    </section>
+
     <section class="about-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
         <div class="container">
             <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 1rem;">About</h1>
@@ -951,6 +957,7 @@
         const heroSection = document.querySelector('.hero');
         const featuredSection = document.querySelector('.featured');
         const riaBannerSection = document.querySelector('.ria-banner');
+        const scrollingBannerSection = document.querySelector('.scrolling-banner');
 
         function showAboutPage() {
             heroSection.style.display = 'none';
@@ -958,7 +965,8 @@
             aboutSection.style.display = 'block';
             worksSection.style.display = 'none';
             contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'block'; // Show banner on About page
+            riaBannerSection.style.display = 'block';
+            scrollingBannerSection.style.display = 'block'; // Show scrolling banner on About page
         }
 
         function showWorksPage() {
@@ -967,7 +975,8 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'block';
             contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'none'; // Hide banner on other pages
+            riaBannerSection.style.display = 'none';
+            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
         }
 
         function showContactPage() {
@@ -976,7 +985,8 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'none';
             contactSection.style.display = 'block';
-            riaBannerSection.style.display = 'none'; // Hide banner on other pages
+            riaBannerSection.style.display = 'none';
+            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
         }
 
         function showHomePage() {
@@ -985,7 +995,8 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'none';
             contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'none'; // Hide banner on other pages
+            riaBannerSection.style.display = 'none';
+            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
         }
 
         function handleHashRouting() {
