@@ -490,17 +490,17 @@
         .carousel-arrow:disabled {
             cursor: default;
             background: #FFFFFF;
-            color: #CCCCCC;
+            color: #CCCCCC; /* Keep disabled color light */
             border-color: #E5E5E5;
         }
         .carousel-arrow:hover,
         .carousel-arrow:active {
             background: var(--accent-secondary);
-            color: #FFFFFF;
+            color: #000000; /* Ensure color is black on hover/active */
             border-color: var(--accent-secondary);
         }
         .carousel-arrow svg path {
-            stroke: currentColor;
+            stroke: #000000; /* Explicitly set stroke to black */
         }
         .featured-item {
             min-width: calc(25% - 1.5rem); /* 4 items per view, minus gap */
@@ -570,9 +570,12 @@
              color: #666666;
         }
 
-        body.dark-mode-nav .social-links a,
-        body.dark-mode-nav .social-links a:hover {
+        body.dark-mode-nav .social-links a {
             color: var(--text-primary);
+        }
+
+        body.dark-mode-nav .social-links a:hover {
+            color: var(--accent-secondary);
         }
 
         body.dark-mode-nav .about-section strong {
