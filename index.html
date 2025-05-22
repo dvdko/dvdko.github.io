@@ -644,13 +644,29 @@
         <div class="container">
             <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">Works</h1>
             <h2 style="font-size:2rem; margin-bottom:1.5rem; color: #1A1A1A;">BRAND COLLABS</h2>
-            <h3 style="font-size:1.5rem; margin-bottom:1rem; color: #1A1A1A;">Walmart Discovered</h3>
-            <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
-                <li>Deemed Creator of the Month for August 2024</li>
-                <li>Produced 6 accessories themed after "Entertainment & Fantasy," selling out 120,000 free limited units within August 2024</li>
-                <li>Collaborated on a Virtual Twin launch that pairs with the purchase of real-world item for Halloween 2024</li>
-                <li>Curated items showcased for Christmas 2024</li>
-            </ul>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="font-size:1.5rem; margin-bottom:1rem; color: #1A1A1A;">Walmart Discovered</h3>
+                    <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
+                        <li>Deemed Creator of the Month for August 2024</li>
+                        <li>Produced 6 accessories themed after "Entertainment & Fantasy," selling out 120,000 free limited units within August 2024</li>
+                        <li>Collaborated on a Virtual Twin launch that pairs with the purchase of real-world item for Halloween 2024</li>
+                        <li>Curated items showcased for Christmas 2024</li>
+                    </ul>
+                </div>
+                <div id="walmart-carousel-container" style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto; position: relative;">
+                    <div id="walmart-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
+                        <img src="./public/Walmart_Items.png" alt="Walmart Items" style="min-width: 100%; height: auto; scroll-snap-align: start;">
+                        <img src="./public/Walmart_IRL.png" alt="Walmart IRL" style="min-width: 100%; height: auto; scroll-snap-align: start;">
+                        <img src="./public/Walmart_Virtual_Twin.jpg" alt="Walmart Virtual Twin" style="min-width: 100%; height: auto; scroll-snap-align: start;">
+                    </div>
+                    <div id="walmart-carousel-pagination" style="text-align: center; margin-top: 1rem;">
+                        <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                        <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                        <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                    </div>
+                </div>
+            </div>
 
             <h3 style="font-size:1.5rem; margin-top:1.5rem; margin-bottom:1rem; color: #1A1A1A;">Roblox</h3>
             <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
@@ -669,7 +685,7 @@
     <section class="contact-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
         <div class="container">
             <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">Contact</h1>
-            <p style="font-size:1.2rem; color:#666666;">Feel free to contact me at <a href="mailto:david@dvdko.com">david@dvdko.com</a></p>
+            <p style="font-size:1.2rem; color:#666666;">For business inquiries, feel free to contact me at <a href="mailto:david@dvdko.com">david@dvdko.com</a>.</p>
         </div>
     </section>
 
@@ -967,6 +983,37 @@
                 body.classList.remove('dark-mode-nav');
             }
         }
+
+        // Walmart Carousel Functionality
+        const walmartCarousel = document.getElementById('walmart-carousel');
+        const walmartDots = document.querySelectorAll('#walmart-carousel-pagination .carousel-dot');
+
+        if (walmartCarousel && walmartDots.length > 0) {
+            walmartCarousel.addEventListener('scroll', () => {
+                const scrollLeft = walmartCarousel.scrollLeft;
+                const itemWidth = walmartCarousel.clientWidth;
+                const activeIndex = Math.round(scrollLeft / itemWidth);
+
+                walmartDots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
+                    } else {
+                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
+                    }
+                });
+            });
+
+            walmartDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const itemWidth = walmartCarousel.clientWidth;
+                    walmartCarousel.scrollTo({
+                        left: index * itemWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
     </script>
 </body>
 </html> 
