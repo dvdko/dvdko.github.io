@@ -525,6 +525,51 @@
             }
             .carousel-arrow.right { left: 50px; }
         }
+
+        /* Styles for dark-mode-nav */
+        body.dark-mode-nav .navbar {
+            background-color: var(--bg-primary);
+        }
+
+        body.dark-mode-nav .logo,
+        body.dark-mode-nav .logo:hover {
+            color: var(--text-primary);
+        }
+
+        body.dark-mode-nav .nav-links a,
+        body.dark-mode-nav .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        body.dark-mode-nav .hamburger span {
+            background-color: var(--text-primary);
+        }
+
+        /* Text colors for light sections in dark mode nav */
+        body.dark-mode-nav .about-section h1,
+        body.dark-mode-nav .about-section h2,
+        body.dark-mode-nav .works-section h1,
+        body.dark-mode-nav .works-section h2,
+        body.dark-mode-nav .contact-section h1 {
+            color: #1A1A1A;
+        }
+
+        body.dark-mode-nav .about-section p,
+        body.dark-mode-nav .works-section p,
+        body.dark-mode-nav .about-section li,
+        body.dark-mode-nav .works-section li,
+        body.dark-mode-nav .contact-section p {
+             color: #666666;
+        }
+
+        body.dark-mode-nav .social-links a,
+        body.dark-mode-nav .social-links a:hover {
+            color: var(--text-primary);
+        }
+
+        body.dark-mode-nav .about-section strong {
+            color: var(--accent-secondary);
+        }
     </style>
 </head>
 <body>
@@ -894,6 +939,7 @@
             } else {
                 showHomePage();
             }
+            toggleNavStyle();
         }
 
         aboutLink.addEventListener('click', function(e) {
@@ -911,6 +957,16 @@
         window.addEventListener('hashchange', handleHashRouting);
         // On page load, show correct section
         handleHashRouting();
+
+        function toggleNavStyle() {
+            const body = document.body;
+            const hash = location.hash;
+            if (hash === '#/works' || hash === '#/about' || hash === '#/contact') {
+                body.classList.add('dark-mode-nav');
+            } else {
+                body.classList.remove('dark-mode-nav');
+            }
+        }
     </script>
 </body>
 </html> 
