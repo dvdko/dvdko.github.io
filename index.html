@@ -927,6 +927,7 @@
         const contactSection = document.querySelector('.contact-section');
         const heroSection = document.querySelector('.hero');
         const featuredSection = document.querySelector('.featured');
+        const riaBannerSection = document.querySelector('.ria-banner');
 
         function showAboutPage() {
             heroSection.style.display = 'none';
@@ -934,6 +935,7 @@
             aboutSection.style.display = 'block';
             worksSection.style.display = 'none';
             contactSection.style.display = 'none';
+            riaBannerSection.style.display = 'block'; // Show banner on About page
         }
 
         function showWorksPage() {
@@ -942,6 +944,7 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'block';
             contactSection.style.display = 'none';
+            riaBannerSection.style.display = 'none'; // Hide banner on other pages
         }
 
         function showContactPage() {
@@ -950,6 +953,7 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'none';
             contactSection.style.display = 'block';
+            riaBannerSection.style.display = 'none'; // Hide banner on other pages
         }
 
         function showHomePage() {
@@ -958,6 +962,7 @@
             aboutSection.style.display = 'none';
             worksSection.style.display = 'none';
             contactSection.style.display = 'none';
+            riaBannerSection.style.display = 'none'; // Hide banner on other pages
         }
 
         function handleHashRouting() {
