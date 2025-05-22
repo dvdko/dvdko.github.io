@@ -464,13 +464,13 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: #FFFFFF;
-            border: 1px solid #E5E5E5;
+            background: var(--bg-primary); /* Black button background */
+            border: 1px solid var(--bg-primary); /* Black border */
             border-radius: 50%;
             width: 40px;
             height: 40px;
             font-size: 2rem;
-            color: #000000;
+            color: var(--text-primary); /* White arrow color */
             z-index: 2;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -479,7 +479,7 @@
             justify-content: center;
             padding: 0;
             line-height: 1;
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
         }
         .carousel-arrow.left {
             left: -28px;
@@ -495,12 +495,12 @@
         }
         .carousel-arrow:hover,
         .carousel-arrow:active {
-            background: var(--accent-secondary);
-            color: #000000; /* Ensure color is black on hover/active */
-            border-color: var(--accent-secondary);
+            background: var(--accent-secondary); /* Green background on hover */
+            color: var(--bg-primary); /* Black arrow on hover */
+            border-color: var(--accent-secondary); /* Green border on hover */
         }
         .carousel-arrow svg path {
-            stroke: #000000; /* Explicitly set stroke to black */
+            stroke: currentColor; /* Inherit color from the button text/icon */
         }
         .featured-item {
             min-width: calc(25% - 1.5rem); /* 4 items per view, minus gap */
@@ -571,7 +571,7 @@
         }
 
         body.dark-mode-nav .social-links a {
-            color: var(--text-primary);
+            color: var(--text-secondary);
         }
 
         body.dark-mode-nav .social-links a:hover {
