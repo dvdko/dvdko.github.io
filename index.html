@@ -716,8 +716,15 @@
                         <li>Achieved over 12,000 sales within 24 hours through in-experience marketing</li>
                     </ul>
                 </div>
-                <div style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto;">
-                    <img src="./public/The_Hunt_Tie.jpg" alt="The Hunt Tie" style="width: 100%; height: auto; display: block;">
+                <div id="roblox-carousel-container" style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto; position: relative;">
+                    <div id="roblox-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
+                        <img src="./public/The_Hunt_Tie.jpg" alt="The Hunt Tie" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;">
+                        <img src="./public/tie_concept.png" alt="Tie Concept" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;">
+                    </div>
+                     <div id="roblox-carousel-pagination" style="text-align: center; margin-top: 1rem;">
+                        <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                        <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                    </div>
                 </div>
             </div>
 
@@ -750,6 +757,7 @@
         <div class="container">
             <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 2rem;">Contact</h1>
             <p style="font-size:1.2rem; color:#666666;">For business inquiries, feel free to contact <a href="mailto:david@dvdko.com">david@dvdko.com</a>.</p>
+            <img src="./public/dvdko_transparent_cropped_contrast_256.png" alt="dvdko logo circle" style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: 2rem auto 0;">
         </div>
     </section>
 
@@ -1049,6 +1057,38 @@
             });
         }
 
+    </script>
+
+    <script>
+        // Roblox Carousel Functionality
+        const robloxCarousel = document.getElementById('roblox-carousel');
+        const robloxDots = document.querySelectorAll('#roblox-carousel-pagination .carousel-dot');
+
+        if (robloxCarousel && robloxDots.length > 0) {
+            robloxCarousel.addEventListener('scroll', () => {
+                const scrollLeft = robloxCarousel.scrollLeft;
+                const itemWidth = robloxCarousel.clientWidth;
+                const activeIndex = Math.round(scrollLeft / itemWidth);
+
+                robloxDots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
+                    } else {
+                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
+                    }
+                });
+            });
+
+            robloxDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const itemWidth = robloxCarousel.clientWidth;
+                    robloxCarousel.scrollTo({
+                        left: index * itemWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
     </script>
 </body>
 </html> 
