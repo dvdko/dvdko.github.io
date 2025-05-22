@@ -109,6 +109,24 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px; /* Add some space for the underline */
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-secondary);
+            transition: width 0.3s ease-out;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -523,9 +541,12 @@
             color: var(--text-primary);
         }
 
-        body.dark-mode-nav .nav-links a,
-        body.dark-mode-nav .nav-links a:hover {
+        body.dark-mode-nav .nav-links a {
             color: var(--text-primary);
+        }
+
+        body.dark-mode-nav .nav-links a:hover {
+            color: var(--accent-secondary);
         }
 
         body.dark-mode-nav .hamburger span {
@@ -602,7 +623,7 @@
 
     <section class="about-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
         <div class="container">
-            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">About</h1>
+            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 2rem;">About</h1>
             <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
                 <div style="flex: 1; min-width: 300px;">
                     <p style="font-size:1.2rem; color:#666666; max-width:700px;">dvdko is a leading virtual fashion brand on Roblox, specializing in delivering high-quality UGC (User-Generated Content) to the avatar marketplace.</p>
@@ -611,10 +632,10 @@
                     <h2 style="font-size:1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: #1A1A1A;">Highlights:</h2>
                     <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
                         <li>Nominated in the Roblox Innovation Awards 2024 for <strong>Best Original UGC</strong></li>
-                        <li><strong>3,000+</strong> items published</li>
-                        <li><strong>25,000,000+</strong> total sales</li>
-                        <li><strong>160,000+</strong> community members</li>
-                        <li><strong>10,500,000+</strong> engagements in "Catalog Avatar Creator"</li>
+                        <li><strong>4,000+</strong> items published</li>
+                        <li><strong>25,500,000+</strong> total sales</li>
+                        <li><strong>170,000+</strong> community members</li>
+                        <li><strong>10,600,000+</strong> engagements in "Catalog Avatar Creator"</li>
                     </ul>
                 </div>
                 <div style="flex: 1; max-width: 300px; margin: 0 auto;">
@@ -678,7 +699,7 @@
 
     <section class="contact-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
         <div class="container">
-            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">Contact</h1>
+            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 2rem;">Contact</h1>
             <p style="font-size:1.2rem; color:#666666;">For business inquiries, feel free to contact <a href="mailto:david@dvdko.com">david@dvdko.com</a>.</p>
         </div>
     </section>
