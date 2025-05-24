@@ -629,19 +629,19 @@
             </div>
         </div>
     </section>
-    <section class="stats-section" style="position: relative; z-index: 3; background-color: var(--bg-secondary); padding: 4rem 0; text-align: center;">
+    <section class="stats-section" style="position: relative; z-index: 3; background-color: var(--bg-secondary); padding: 2rem 0; text-align: center;">
         <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
-            <div class="stat-item" style="flex: 1; min-width: 200px;">
-                <h3 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0.5rem;">4K+</h3>
-                <p style="font-size: 1rem; color: var(--text-secondary);">Total Items</p>
+            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
+                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">4K+</h3>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Total Items</p>
             </div>
-            <div class="stat-item" style="flex: 1; min-width: 200px;">
-                <h3 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0.5rem;">25.5M+</h3>
-                <p style="font-size: 1rem; color: var(--text-secondary);">Total Sales</p>
+            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
+                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">25.5M+</h3>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Total Sales</p>
             </div>
-            <div class="stat-item" style="flex: 1; min-width: 200px;">
-                <h3 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0.5rem;">170K+</h3>
-                <p style="font-size: 1rem; color: var(--text-secondary);">Community Members</p>
+            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
+                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">170K+</h3>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Community Members</p>
             </div>
         </div>
     </section>
@@ -1227,6 +1227,61 @@
                 });
             });
         }
+    </script>
+
+    <script>
+        // Stats Typing Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const stats = [
+                { id: 'stat-items', target: 4, suffix: 'K+' },
+                { id: 'stat-sales', target: 25.5, suffix: 'M+' },
+                { id: 'stat-community', target: 170, suffix: 'K+' }
+            ];
+
+            function animateNumber(element, target, duration, suffix) {
+                const start = 0;
+                let startTime = null;
+
+                function step(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    const value = start + progress * (target - start);
+
+                    if (suffix === 'M+') {
+                         element.textContent = value.toFixed(1) + suffix; // Keep one decimal for Millions
+                    } else {
+                         element.textContent = Math.floor(value) + suffix; // Use whole numbers for Thousands
+                    }
+                   
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                         // Ensure the final value is exactly the target formatted
+                         if (suffix === 'M+') {
+                              element.textContent = target.toFixed(1) + suffix;
+                         } else {
+                              element.textContent = target + suffix;
+                         }
+                    }
+                }
+
+                requestAnimationFrame(step);
+            }
+
+            // Assign IDs to the stat elements for easier selection
+            document.querySelector('.stats-section .container .stat-item:nth-child(1) h3').id = 'stat-items';
+            document.querySelector('.stats-section .container .stat-item:nth-child(2) h3').id = 'stat-sales';
+            document.querySelector('.stats-section .container .stat-item:nth-child(3) h3').id = 'stat-community';
+
+            // Start animation for each stat
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                if (element) {
+                    animateNumber(element, stat.target, 2000, stat.suffix); // 2000ms = 2 seconds duration
+                }
+            });
+        });
     </script>
 </body>
 </html> 
