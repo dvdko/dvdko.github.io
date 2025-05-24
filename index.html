@@ -728,8 +728,8 @@
                 </div>
                 <div id="walmart-carousel-container" style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto; position: relative;">
                     <div id="walmart-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
-                        <img src="./public/Walmart_IRL.png" alt="Walmart IRL" style="min-width: 100%; height: auto; scroll-snap-align: start;">
                         <img src="./public/Walmart_Virtual_Twin.jpg" alt="Walmart Virtual Twin" style="min-width: 100%; height: auto; scroll-snap-align: start;">
+                        <img src="./public/Walmart_IRL.png" alt="Walmart IRL" style="min-width: 100%; height: auto; scroll-snap-align: start;">
                     </div>
                     <div id="walmart-carousel-pagination" style="text-align: center; margin-top: 1rem;">
                         <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
@@ -764,8 +764,14 @@
                 <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
                     <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color: #1A1A1A;">@superiorToYourMayo</h3>
                     <div style="background-color: #E0E0E0; padding: 1rem;">
-                        <img src="./public/Mari_Hair.png" alt="Mari Hair" style="width: 100%; height: auto; display: block;" loading="lazy">
-                        <img src="./public/mari_render.png" alt="Mari Render" style="width: 100%; height: auto; display: block; margin-top: 1rem;" loading="lazy">
+                        <div id="mari-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
+                            <img src="./public/Mari_Hair.png" alt="Mari Hair" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;" loading="lazy">
+                            <img src="./public/mari_render.png" alt="Mari Render" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;" loading="lazy">
+                        </div>
+                        <div id="mari-carousel-pagination" style="text-align: center; margin-top: 1rem;">
+                            <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                            <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                        </div>
                     </div>
                 </div>
                 <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
@@ -782,7 +788,7 @@
                 </div>
             </div>
 
-            <h2 style="font-size:2rem; margin-top:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">ORIGINAL WORKS</h2>
+            <h2 style="font-size:2rem; margin-top:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">EXAMPLES OF ORIGINAL WORKS</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start;">
                 <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
                     <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
@@ -1159,6 +1165,38 @@
                 dot.addEventListener('click', () => {
                     const itemWidth = robloxCarousel.clientWidth;
                     robloxCarousel.scrollTo({
+                        left: index * itemWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+    </script>
+
+    <script>
+        // Mari Carousel Functionality
+        const mariCarousel = document.getElementById('mari-carousel');
+        const mariDots = document.querySelectorAll('#mari-carousel-pagination .carousel-dot');
+
+        if (mariCarousel && mariDots.length > 0) {
+            mariCarousel.addEventListener('scroll', () => {
+                const scrollLeft = mariCarousel.scrollLeft;
+                const itemWidth = mariCarousel.clientWidth;
+                const activeIndex = Math.round(scrollLeft / itemWidth);
+
+                mariDots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
+                    } else {
+                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
+                    }
+                });
+            });
+
+            mariDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const itemWidth = mariCarousel.clientWidth;
+                    mariCarousel.scrollTo({
                         left: index * itemWidth,
                         behavior: 'smooth'
                     });
