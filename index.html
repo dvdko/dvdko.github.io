@@ -1091,18 +1091,30 @@
             worksSection.style.display = 'none';
             contactSection.style.display = 'none';
             riaBannerSection.style.display = 'none';
-            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
+            scrollingBannerSection.style.display = 'none';
+            // Show stats section on home page
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) statsSection.style.display = '';
         }
 
         function handleHashRouting() {
+            const statsSection = document.querySelector('.stats-section');
             if (location.hash === '#/about') {
                 showAboutPage();
+                // Hide stats section on other pages
+                if (statsSection) statsSection.style.display = 'none';
             } else if (location.hash === '#/works') {
                 showWorksPage();
+                // Hide stats section on other pages
+                if (statsSection) statsSection.style.display = 'none';
             } else if (location.hash === '#/contact') {
                 showContactPage();
+                // Hide stats section on other pages
+                if (statsSection) statsSection.style.display = 'none';
             } else {
                 showHomePage();
+                // Show stats section on home page
+                if (statsSection) statsSection.style.display = '';
             }
             toggleNavStyle();
         }
