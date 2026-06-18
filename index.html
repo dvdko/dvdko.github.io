@@ -4,599 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dvdko | Roblox UGC Creator</title>
-    <link rel="icon" type="image/png" href="public/dvdko_Logo.png">
+    <link rel="icon" type="image/webp" href="public/dvdko_Logo.webp">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oleo+Script:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #161821;
-            --bg-secondary: #1E2132;
-            --accent-primary: #CCFF00;
-            --accent-secondary: #A2FF00;
-            --text-primary: #FFFFFF;
-            --text-secondary: #A6ACCD;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            overflow-y: scroll; /* Force scrollbar to always be visible */
-        }
-
-        html {
-            scrollbar-width: thin; /* For Firefox */
-            scrollbar-color: var(--text-secondary) var(--bg-primary); /* For Firefox */
-        }
-
-        /* For Webkit browsers (Chrome, Safari, etc.) */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--text-secondary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-secondary);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 4rem;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: transparent;
-            height: 100px;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 2.8rem;
-            font-weight: 400;
-            text-transform: lowercase;
-            letter-spacing: 1px;
-            font-family: 'Oleo Script', cursive;
-            color: #FFFFFF;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--accent-secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            height: 100%;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 5px; /* Add some space for the underline */
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-secondary);
-            transition: width 0.3s ease-out;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-secondary);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 10px;
-            background: none;
-            border: none;
-            height: 44px;
-            width: 44px;
-            justify-content: center;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            background-color: var(--bg-primary);
-        }
-
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .video-background::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(22, 24, 33, 0.7);
-            z-index: 1;
-        }
-
-        .video-background iframe {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 150vw;
-            height: 150vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        @media (min-aspect-ratio: 16/9) {
-            .video-background iframe {
-                height: 56.25vw;
-            }
-        }
-
-        @media (max-aspect-ratio: 16/9) {
-            .video-background iframe {
-                width: 177.78vh;
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            padding: 8rem 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .hero-title {
-            font-size: 5.5rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--accent-secondary);
-            color: var(--bg-primary);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            background: var(--accent-primary);
-            color: var(--bg-primary);
-        }
-
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 2rem;
-            }
-            
-            .hero-title {
-                font-size: 4.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 100px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(41, 45, 62, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                height: calc(100vh - 100px);
-            }
-
-            .nav-links.active {
-                display: flex;
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-
-            .hero-title {
-                font-size: 3.5rem;
-            }
-        }
-
-        .featured {
-            position: relative;
-            z-index: 3;
-            padding: 6rem 0;
-            background-color: #FFFFFF;
-        }
-
-        .featured-grid {
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .featured-item {
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .featured-item:hover {
-            /* No hover effect */
-        }
-
-        .featured-image {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #E0E0E0;
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);
-        }
-
-        .featured-item:hover .featured-image img {
-            transform: scale(1.08);
-            transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1);
-        }
-
-        .featured-info {
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .featured-subtitle {
-            font-size: 0.9rem;
-            color: #666666;
-            margin-bottom: 0.5rem;
-        }
-
-        .featured-title {
-            font-size: 1.1rem;
-            color: #1A1A1A;
-            font-weight: 600;
-        }
-
-        @media (max-width: 1200px) {
-            .featured-grid {
-                /* No grid-template-columns needed for flex layout */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .featured-grid {
-                /* No grid-template-columns needed for flex layout */
-                gap: 3rem;
-            }
-
-            .featured {
-                padding: 4rem 0;
-            }
-        }
-
-        .footer {
-            position: relative;
-            z-index: 3;
-            background-color: var(--bg-primary);
-            padding: 3rem 0;
-            /* border-top: 1px solid rgba(105, 112, 152, 0.2); */
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-left: auto;
-            z-index: 1;
-        }
-
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-secondary);
-            transform: translateY(-2px);
-        }
-
-        .roblox-icon {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .carousel-viewport {
-            overflow: hidden;
-            width: calc((100% / 4) * 4); /* Show 4 items at a time on desktop */
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-primary); /* Black button background */
-            border: 1px solid var(--bg-primary); /* Black border */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 2rem;
-            color: var(--text-primary); /* White arrow color */
-            z-index: 2;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            line-height: 1;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
-        }
-        .carousel-arrow.left {
-            left: -28px;
-        }
-        .carousel-arrow.right {
-            right: -28px;
-        }
-        .carousel-arrow:disabled {
-            cursor: default;
-            background: var(--bg-primary); /* Black background for disabled */
-            color: var(--text-secondary); /* Grey arrow color for disabled */
-            border-color: var(--text-secondary); /* Grey border for disabled */
-        }
-        .carousel-arrow:hover,
-        .carousel-arrow:active {
-            background: var(--accent-secondary); /* Green background on hover */
-            color: var(--bg-primary); /* Black arrow on hover */
-            border-color: var(--accent-secondary); /* Green border on hover */
-        }
-        .carousel-arrow svg path {
-            stroke: currentColor; /* Inherit color from the button text/icon */
-        }
-        .featured-item {
-            min-width: calc(25% - 1.5rem); /* 4 items per view, minus gap */
-            box-sizing: border-box;
-        }
-        @media (max-width: 1200px) {
-            .carousel-viewport {
-                width: calc((100% / 2) * 2); /* Show 2 items at a time */
-            }
-            .featured-item {
-                min-width: calc(50% - 1rem);
-            }
-        }
-        @media (max-width: 768px) {
-            .carousel-viewport {
-                width: 100%; /* Show 1 item at a time */
-            }
-            .featured-item {
-                min-width: 100%;
-            }
-            .carousel-arrow.left, .carousel-arrow.right {
-                left: 0;
-                right: 0;
-                top: auto;
-                bottom: -50px;
-                transform: none;
-            }
-            .carousel-arrow.right { left: 50px; }
-        }
-
-        /* Styles for dark-mode-nav */
-        body.dark-mode-nav .navbar {
-            background-color: var(--bg-primary);
-        }
-
-        body.dark-mode-nav .logo,
-        body.dark-mode-nav .logo:hover {
-            color: var(--text-primary);
-        }
-
-        body.dark-mode-nav .nav-links a {
-            color: var(--text-primary);
-        }
-
-        body.dark-mode-nav .nav-links a:hover {
-            color: var(--accent-secondary);
-        }
-
-        body.dark-mode-nav .hamburger span {
-            background-color: var(--text-primary);
-        }
-
-        /* Text colors for light sections in dark mode nav */
-        body.dark-mode-nav .about-section h1,
-        body.dark-mode-nav .about-section h2,
-        body.dark-mode-nav .works-section h1,
-        body.dark-mode-nav .works-section h2,
-        body.dark-mode-nav .contact-section h1 {
-            color: #1A1A1A;
-        }
-
-        body.dark-mode-nav .about-section p,
-        body.dark-mode-nav .works-section p,
-        body.dark-mode-nav .about-section li,
-        body.dark-mode-nav .works-section li,
-        body.dark-mode-nav .contact-section p {
-             color: #666666;
-        }
-
-        body.dark-mode-nav .social-links a {
-            color: var(--text-secondary);
-        }
-
-        body.dark-mode-nav .social-links a:hover {
-            color: var(--accent-secondary);
-        }
-
-        body.dark-mode-nav .about-section strong {
-            color: #1A1A1A;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); /* Translate by 50% for seamless loop with duplicated content */}
-        }
-
-        .scrolling-banner-text {
-            font-family: 'Special Gothic Expanded One', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav id="navbar" class="navbar">
         <div class="container nav-container">
-            <div class="logo"><a href="/" class="logo">dvdko</a></div>
+            <a href="/" class="logo">dvdko</a>
             <button class="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -623,291 +40,322 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Virtual Fashion Brand</h1>
-                <h2 class="hero-title-alt">UGC Creator / 3D Artist</h2>
-                <p class="hero-subtitle">Avatars. Accessories. Apparel.<br>dvdko is a native Roblox brand that specializes in creating original, iconic designs for the avatar marketplace.</p>
-                <a href="./#/works" class="cta-button">Explore</a>
+                <h2 class="hero-title-alt">Avatars, Accessories, &amp; Apparel</h2>
+                <p class="hero-subtitle">dvdko is a native Roblox brand that specializes in creating original, iconic designs for the UGC marketplace.</p>
+                <div class="hero-cta-row">
+                    <a href="./#/works" class="cta-button">Explore Works</a>
+                    <a href="./#/about" class="cta-button-outline">About dvdko</a>
+                </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <span class="scroll-indicator-label">Scroll</span>
+            <div class="scroll-indicator-line"></div>
+        </div>
     </section>
-    <section class="stats-section" style="position: relative; z-index: 3; background-color: var(--bg-secondary); padding: 2rem 0; text-align: center;">
-        <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
-            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
-                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">4K+</h3>
-                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Total Items</p>
+
+    <section class="stats-section">
+        <div class="container stats-container">
+            <div class="stat-item fade-in">
+                <h3 id="stat-items" class="stat-number">4K+</h3>
+                <p class="stat-label">Total Items</p>
             </div>
-            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
-                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">25.5M+</h3>
-                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Total Sales</p>
+            <div class="stat-item fade-in">
+                <h3 id="stat-sales" class="stat-number">25.5M+</h3>
+                <p class="stat-label">Total Sales</p>
             </div>
-            <div class="stat-item" style="flex: 1; min-width: 200px; background-color: var(--bg-primary); border-radius: 4px; padding: 1.5rem 1rem;">
-                <h3 style="font-size: 4rem; margin-bottom: 0.5rem; background-image: linear-gradient(to bottom right, var(--accent-primary), var(--text-primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">170K+</h3>
-                <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: bold;">Community Members</p>
+            <div class="stat-item fade-in">
+                <h3 id="stat-community" class="stat-number">420K+</h3>
+                <p class="stat-label">Community Members</p>
             </div>
         </div>
     </section>
 
-    <section class="ria-banner" style="position: relative; z-index: 3; overflow: hidden;">
-        <div style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/public/RDC_Shapes.png');
-            background-size: cover;
-            background-position: center;
-            filter: blur(20px) brightness(1.2);
-            transform: scale(1.1);
-            z-index: 1;
-        "></div>
-        <div style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(22, 24, 33, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 2;
-        "></div>
-        <div class="container" style="position: relative; z-index: 3;">
-            <img 
-                src="./public/RIA24.jpeg" 
-                alt="RIA24 Banner" 
-                style="width: 100%; height: auto; display: block;"
-            >
+    <section class="ria-banner">
+        <div class="ria-banner-bg"></div>
+        <div class="ria-banner-overlay"></div>
+        <div class="container ria-banner-content">
+            <img src="./public/RIA24.webp" alt="Roblox Innovation Awards 2024 Banner">
         </div>
     </section>
 
-    <section class="scrolling-banner" style="background-color: var(--accent-secondary); color: var(--bg-primary); padding: 1rem 0; overflow: hidden;">
-        <div style="display: inline-flex; white-space: nowrap; animation: scroll 50s linear infinite;">
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-             <!-- Duplicate the content to ensure seamless loop -->
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
-            <span class="scrolling-banner-text" style="margin-right: 2rem;">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC"</span>
+    <section class="scrolling-banner">
+        <div class="scrolling-banner-inner">
+            <span class="scrolling-banner-text">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC" &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+            <span class="scrolling-banner-text">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC" &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+            <span class="scrolling-banner-text">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC" &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+            <span class="scrolling-banner-text">ROBLOX INNOVATION AWARDS 2024 NOMINEE FOR "BEST ORIGINAL UGC" &nbsp;&nbsp;✦&nbsp;&nbsp;</span>
         </div>
     </section>
 
-    <section class="about-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
+    <section class="about-section">
         <div class="container">
-            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 1rem;">About</h1>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
-                <div style="flex: 1; min-width: 300px;">
-                    <p style="font-size:1.2rem; color:#666666; max-width:700px;"><strong>dvdko</strong> is a leading virtual fashion brand on Roblox, specializing in delivering high-quality UGC (User-Generated Content) to the avatar marketplace.</p>
-                    <p style="font-size:1.2rem; color:#666666; max-width:700px; margin-top: 1rem;">Backed by over a decade of platform experience and six years of 3D modeling expertise, the brand has earned recognition for original, iconic designs that resonate with the Roblox community.</p>
-                    <p style="font-size:1.2rem; color:#666666; max-width:700px; margin-top: 1rem;">From accessories and clothing to avatars and dynamic heads, dvdko continues to push the boundaries of virtual style — blending technical precision with aesthetic vision.</p>
-                    <h2 style="font-size:1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: #1A1A1A;">Highlights:</h2>
-                    <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
-                        <li>Roblox Innovation Awards 2024 nominee for "Best Original UGC"</li>
+            <h1 class="section-title">About</h1>
+            <div class="about-layout">
+                <div class="about-text">
+                    <p><strong>dvdko</strong> is a leading virtual fashion brand on Roblox, specializing in delivering high-quality UGC (User-Generated Content) to the avatar marketplace.</p>
+                    <p>Backed by over a decade of platform experience and six years of 3D modeling expertise, the brand has earned recognition for original, iconic designs that resonate with the Roblox community.</p>
+                    <p>From accessories and clothing to avatars and dynamic heads, dvdko continues to push the boundaries of virtual style — blending technical precision with aesthetic vision.</p>
+                    <h2 class="section-subtitle">Highlights:</h2>
+                    <ul class="about-highlights">
                         <li><strong>4,000+</strong> items published</li>
                         <li><strong>25,500,000+</strong> total sales</li>
-                        <li><strong>170,000+</strong> community members</li>
+                        <li><strong>420,000+</strong> community members</li>
                         <li><strong>10,600,000+</strong> engagements in Catalog Avatar Creator</li>
                     </ul>
-                    <div style="margin-top: 2rem;">
-                        <a href="https://www.roblox.com/users/28276317/profile" target="_blank" style="display: inline-block; margin-right: 1rem; color: #00008B; text-decoration: none; font-size: 1.2rem; transition: text-decoration 0.3s ease;">
-                            <i class="fas fa-external-link-alt" style="margin-right: 0.5rem;"></i>Roblox Profile
+                    <div class="award-callout">
+                        <i class="fas fa-star award-icon"></i>
+                        <div class="award-text">
+                            <strong>Roblox Innovation Awards 2024</strong>
+                            <span>Nominee &mdash; Best Original UGC</span>
+                        </div>
+                    </div>
+                    <div class="award-callout">
+                        <i class="fas fa-microphone award-icon"></i>
+                        <div class="award-text">
+                            <strong>Roblox Korea Networking Event 2025</strong>
+                            <span>Guest Speaker</span>
+                        </div>
+                    </div>
+                    <div class="award-callout">
+                        <i class="fas fa-microphone award-icon"></i>
+                        <div class="award-text">
+                            <strong>Roblox Creator Meetup, Vietnam 2026</strong>
+                            <span>Panelist</span>
+                        </div>
+                    </div>
+                    <div class="award-callout">
+                        <i class="fas fa-microphone award-icon"></i>
+                        <div class="award-text">
+                            <strong>Roblox Creator Meetup, Thailand 2026</strong>
+                            <span>Panelist</span>
+                        </div>
+                    </div>
+                    <div class="award-callout">
+                        <i class="fas fa-microphone award-icon"></i>
+                        <div class="award-text">
+                            <strong>Roblox Creator Meetup, Indonesia 2026</strong>
+                            <span>Panelist</span>
+                        </div>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://www.roblox.com/users/28276317/profile" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Roblox Profile
                         </a>
-                        <a href="https://www.roblox.com/communities/13794825/dvdko" target="_blank" style="display: inline-block; color: #00008B; text-decoration: none; font-size: 1.2rem; transition: text-decoration 0.3s ease;">
-                            <i class="fas fa-external-link-alt" style="margin-right: 0.5rem;"></i>Roblox Community
+                        <a href="https://www.roblox.com/communities/13794825/dvdko" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Roblox Community
                         </a>
                     </div>
                 </div>
-                <div style="flex: 1; max-width: 300px; margin: 0 auto;">
-                     <img src="./public/dvdko_transparent_solo_contrast.png" alt="dvdko logo" style="width: 100%; height: auto; display: block;">
+                <div class="about-image">
+                    <img src="./public/dvdko_transparent_solo_contrast.webp" alt="dvdko logo">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="works-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
+    <section class="works-section">
         <div class="container">
-            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 2rem;">Works</h1>
-            <h2 style="font-size:2rem; margin-bottom:1.5rem; color: #1A1A1A;">BRAND COLLABS</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start;">
-                <div style="flex: 1; min-width: 300px;">
-                    <h3 style="font-size:1.5rem; margin-bottom:1rem; color: #1A1A1A;">Walmart Discovered</h3>
-                    <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
+            <h1 class="section-title">Works</h1>
+            <h2 class="section-heading">BRAND COLLABS</h2>
+
+            <h3 class="section-subtitle">Walmart Discovered</h3>
+            <div class="collab-layout">
+                <div class="collab-col">
+                    <ul>
                         <li>Deemed Creator of the Month for August 2024</li>
-                        <li>Produced 6 accessories themed after "Entertainment & Fantasy," selling out 120,000 free limited units within August 2024</li>
+                        <li>Produced 6 accessories themed after "Entertainment &amp; Fantasy," selling out 120,000 free limited units within August 2024</li>
                         <li>Collaborated on a Virtual Twin launch that pairs with the purchase of real-world item for Halloween 2024</li>
                         <li>Curated items showcased for Christmas 2024</li>
                     </ul>
                 </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <img src="./public/Walmart_Items.png" alt="Walmart Items Collection" style="width: 100%; height: auto; display: block;">
-                </div>
-                <div id="walmart-carousel-container" style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto; position: relative;">
-                    <div id="walmart-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
-                        <img src="./public/Walmart_Virtual_Twin.jpg" alt="Walmart Virtual Twin" style="min-width: 100%; height: auto; scroll-snap-align: start;">
-                        <img src="./public/Walmart_IRL.png" alt="Walmart IRL" style="min-width: 100%; height: auto; scroll-snap-align: start;">
+                <div class="collab-media">
+                    <img src="./public/Walmart_Items.webp" alt="Walmart Items Collection">
+                    <div id="walmart-carousel" class="collab-carousel">
+                        <img src="./public/Walmart_Virtual_Twin.webp" alt="Walmart Virtual Twin">
+                        <img src="./public/Walmart_IRL.webp" alt="Walmart IRL">
                     </div>
-                    <div id="walmart-carousel-pagination" style="text-align: center; margin-top: 1rem;">
-                        <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
-                        <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                    <div id="walmart-carousel-pagination" class="carousel-pagination">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
                     </div>
                 </div>
             </div>
 
-            <h3 style="font-size:1.5rem; margin-top:1.5rem; margin-bottom:1rem; color: #1A1A1A;">Roblox</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-                <div style="flex: 1; min-width: 300px;">
-                    <ul style="font-size:1.2rem; color:#666666; max-width:700px; list-style-type: disc; padding-left: 1.5rem;">
+            <h3 class="section-subtitle">Roblox</h3>
+            <div class="collab-layout">
+                <div class="collab-col">
+                    <ul>
                         <li>Featured in The Hunt: Mega Edition, Roblox's biggest race for $1,000,000 in March 2025</li>
                         <li>Achieved over 12,000 sales within 24 hours through in-experience marketing</li>
                     </ul>
                 </div>
-                <div id="roblox-carousel-container" style="flex: 1; min-width: 300px; max-width: 500px; margin: 0 auto; position: relative;">
-                    <div id="roblox-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
-                        <img src="./public/The_Hunt_Tie.jpg" alt="The Hunt Tie" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;">
-                    </div>
+                <div class="collab-media">
+                    <img src="./public/The_Hunt_Tie.webp" alt="The Hunt: Mega Edition tie">
                 </div>
             </div>
 
-            <h2 style="font-size:2rem; margin-top:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">OTHER COLLABS</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start;">
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color: #1A1A1A;">@AltiWyre</h3>
-                    <div style="background-color: #E0E0E0; padding: 1rem;">
-                        <img src="./public/alti_sludge.png" alt="Alti Sludge" style="width: 100%; height: auto; display: block;" loading="lazy">
+            <h3 class="section-subtitle">HUGO BOSS</h3>
+            <div class="collab-layout">
+                <div class="collab-col">
+                    <ul>
+                        <li>Created 3 themed accessories for HUGO BOSS</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 class="section-heading-spaced">OTHER COLLABS</h2>
+            <div class="collab-cards">
+                <div class="collab-card fade-in">
+                    <h3>@AltiWyre</h3>
+                    <div class="collab-card-image">
+                        <img src="./public/alti_sludge.webp" alt="AltiWyre collaboration" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color: #1A1A1A;">@superiorToYourMayo</h3>
-                    <div style="background-color: #E0E0E0; padding: 1rem;">
-                        <div id="mari-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory;">
-                            <img src="./public/Mari_Hair.png" alt="Mari Hair" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;" loading="lazy">
-                            <img src="./public/mari_render.png" alt="Mari Render" style="min-width: 100%; height: auto; display: block; scroll-snap-align: start;" loading="lazy">
+                <div class="collab-card fade-in">
+                    <h3>@superiorToYourMayo</h3>
+                    <div class="collab-card-image">
+                        <div id="mari-carousel" class="collab-carousel">
+                            <img src="./public/Mari_Hair.webp" alt="Starry Mari hair" loading="lazy">
+                            <img src="./public/mari_render.webp" alt="Mari render" loading="lazy">
                         </div>
                     </div>
-                    <div id="mari-carousel-pagination" style="text-align: center; margin-top: 1rem;">
-                        <span class="carousel-dot active" style="display: inline-block; width: 10px; height: 10px; background-color: #1A1A1A; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
-                        <span class="carousel-dot" style="display: inline-block; width: 10px; height: 10px; background-color: #CCCCCC; border-radius: 50%; margin: 0 5px; cursor: pointer;"></span>
+                    <div id="mari-carousel-pagination" class="carousel-pagination">
+                        <span class="carousel-dot active"></span>
+                        <span class="carousel-dot"></span>
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color: #1A1A1A;">@ImSleb</h3>
-                    <div style="background-color: #E0E0E0; padding: 1rem;">
-                        <img src="./public/Sleb_Ynez.png" alt="Sleb Ynez" style="width: 100%; height: auto; display: block;" loading="lazy">
+                <div class="collab-card fade-in">
+                    <h3>@ImSleb</h3>
+                    <div class="collab-card-image">
+                        <img src="./public/Sleb_Ynez.webp" alt="YNEZ collaboration" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <h3 style="font-size:1.5rem; margin-bottom:0.5rem; color: #1A1A1A;">@yin_yang</h3>
-                    <div style="background-color: #E0E0E0; padding: 1rem;">
-                        <img src="./public/yang_dog.png" alt="Yang Dog" style="width: 100%; height: auto; display: block;" loading="lazy">
+                <div class="collab-card fade-in">
+                    <h3>@yin_yang</h3>
+                    <div class="collab-card-image">
+                        <img src="./public/yang_dog.webp" alt="Yang dog collaboration" loading="lazy">
                     </div>
                 </div>
             </div>
 
-            <h2 style="font-size:2rem; margin-top:2.5rem; margin-bottom:1.5rem; color: #1A1A1A;">EXAMPLES OF ORIGINAL WORKS</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: flex-start;">
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/santa_render.png" alt="Santa Render" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+            <h2 class="section-heading-spaced">EXAMPLES OF ORIGINAL WORKS</h2>
+            <div class="works-gallery">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/santa_render.webp" alt="Santa render" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/brazil_wings.png" alt="Brazil Wings" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/brazil_wings.webp" alt="Brazil wings" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/samurai_render.png" alt="Samurai Render" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/samurai_render.webp" alt="Samurai render" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/nozomun_render.png" alt="Nozomun Render" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/nozomun_render.webp" alt="Nozomun render" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/kittybread_render.png" alt="Kittybread Render" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/kittybread_render.webp" alt="Kittybread render" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/guitar_bag_render.png" alt="Guitar Bag Render" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/guitar_bag_render.webp" alt="Guitar bag render" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/cat_bag.png" alt="Cat Bag" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/cat_bag.webp" alt="Cat bag" loading="lazy">
                     </div>
                 </div>
-                <div style="flex: 0 0 calc(25% - 1.5rem); min-width: 250px;">
-                    <div style="background-color: #E0E0E0; padding: 1rem; aspect-ratio: 1; display: flex; align-items: center; justify-content: center;">
-                        <img src="./public/Glasses.png" alt="Glasses" style="width: 100%; height: 100%; object-fit: contain;" loading="lazy">
+                <div class="works-gallery-item fade-in">
+                    <div class="works-gallery-image">
+                        <img src="./public/Glasses.webp" alt="Glasses" loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact-section" style="display:none; min-height: 60vh; padding: 6rem 0; background: #FFFFFF;">
+    <section class="contact-section">
         <div class="container">
-            <h1 style="font-size:2.5rem; margin-bottom:1.5rem; color: #1A1A1A; padding-top: 2rem;">Contact</h1>
-            <p style="font-size:1.2rem; color:#666666; text-align: center;">For business inquiries, feel free to contact <a href="mailto:david@dvdko.com">david@dvdko.com</a>.</p>
-            <img src="./public/dvdko_transparent_cropped_contrast_256.png" alt="dvdko logo circle" style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: 2rem auto 0;">
+            <div class="contact-inner">
+                <img src="./public/dvdko_transparent_cropped_contrast_256.webp" alt="dvdko logo" class="contact-logo">
+                <h1 class="section-title">Contact</h1>
+                <p class="contact-lead">For business inquiries, reach out directly.</p>
+                <a href="mailto:david@dvdko.com" class="contact-email">david@dvdko.com</a>
+                <form class="contact-form" action="mailto:david@dvdko.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Name</label>
+                        <input type="text" id="contact-name" name="Name" class="form-input" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email</label>
+                        <input type="email" id="contact-email" name="Email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Message</label>
+                        <textarea id="contact-message" name="Message" class="form-input form-textarea" placeholder="What's on your mind?" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <section class="featured">
         <div class="container">
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #1A1A1A;">COLLECTIONS</h2>
-            <div class="carousel-wrapper" style="position: relative;">
+            <h2 class="featured-heading">COLLECTIONS</h2>
+            <div class="carousel-wrapper">
                 <button class="carousel-arrow left" aria-label="Previous" disabled>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.5 15L8 10L12.5 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.5 15L8 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
                 <div class="carousel-viewport">
                     <div class="featured-grid">
-                        <div class="featured-item">
+                        <div class="featured-item fade-in">
                             <div class="featured-image">
-                                <img src="./public/Mari_Hair.png" alt="Featured Item 1" loading="lazy">
+                                <img src="./public/Mari_Hair.webp" alt="Starry Mari hair accessory" loading="lazy">
+                                <div class="featured-overlay">View &nbsp;→</div>
                             </div>
                             <div class="featured-info">
                                 <p class="featured-subtitle">starry mari</p>
                                 <h3 class="featured-title">dvdko x superiorMARI</h3>
                             </div>
                         </div>
-                        <div class="featured-item">
+                        <div class="featured-item fade-in">
                             <div class="featured-image">
-                                <img src="./public/Walmart_Witch.png" alt="Featured Item 2" loading="lazy">
+                                <img src="./public/Walmart_Witch.webp" alt="Walmart Discovered witch accessory" loading="lazy">
+                                <div class="featured-overlay">View &nbsp;→</div>
                             </div>
                             <div class="featured-info">
                                 <p class="featured-subtitle">Walmart Discovered</p>
                                 <h3 class="featured-title">dvdko x Walmart</h3>
                             </div>
                         </div>
-                        <div class="featured-item">
+                        <div class="featured-item fade-in">
                             <div class="featured-image">
-                                <img src="./public/Sleb_Ynez.png" alt="Featured Item 3" loading="lazy">
+                                <img src="./public/Sleb_Ynez.webp" alt="YNEZ accessory" loading="lazy">
+                                <div class="featured-overlay">View &nbsp;→</div>
                             </div>
                             <div class="featured-info">
                                 <p class="featured-subtitle">YNEZ</p>
                                 <h3 class="featured-title">dvdko x ImSleb</h3>
                             </div>
                         </div>
-                        <div class="featured-item">
+                        <div class="featured-item fade-in">
                             <div class="featured-image">
-                                <img src="./public/Roblox_Tie.png" alt="Featured Item 4" loading="lazy">
+                                <img src="./public/Roblox_Tie.webp" alt="The Hunt Mega Edition tie" loading="lazy">
+                                <div class="featured-overlay">View &nbsp;→</div>
                             </div>
                             <div class="featured-info">
                                 <p class="featured-subtitle">The Hunt: Mega Edition</p>
@@ -918,7 +366,7 @@
                 </div>
                 <button class="carousel-arrow right" aria-label="Next">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.5 5L12 10L7.5 15" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7.5 5L12 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
             </div>
@@ -927,9 +375,8 @@
 
     <footer class="footer">
         <div class="container footer-content">
-            <div class="copyright">
-                &copy; 2025 dvdko. All rights reserved.
-            </div>
+            <div class="footer-brand">dvdko</div>
+            <div class="copyright">&copy; 2026 FIRST MERCURY LLC. All rights reserved.</div>
             <div class="social-links">
                 <a href="https://twitter.com/dvdko_" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://tiktok.com/@dvdko_" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -944,362 +391,6 @@
         </div>
     </footer>
 
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const heroContent = document.querySelector('.hero-content');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Fade out hero content on scroll
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            const fadeStart = 300;
-            const fadeEnd = 600;
-            
-            if (scrollPosition <= fadeStart) {
-                heroContent.style.opacity = 1;
-            } else if (scrollPosition >= fadeEnd) {
-                heroContent.style.opacity = 0;
-            } else {
-                const opacity = 1 - ((scrollPosition - fadeStart) / (fadeEnd - fadeStart));
-                heroContent.style.opacity = opacity;
-            }
-        });
-
-        // Carousel functionality for featured section
-        const grid = document.querySelector('.featured-grid');
-        const leftArrow = document.querySelector('.carousel-arrow.left');
-        const rightArrow = document.querySelector('.carousel-arrow.right');
-        const items = document.querySelectorAll('.featured-item');
-        let scrollIndex = 0;
-
-        function getItemsPerView() {
-            if (window.innerWidth <= 768) return 1;
-            if (window.innerWidth <= 1200) return 2;
-            return 4;
-        }
-
-        function getImageVerticalOffset() {
-            // Get the first visible image's bounding rect relative to the viewport
-            const firstImage = document.querySelector('.featured-image img');
-            const viewport = document.querySelector('.carousel-viewport');
-            if (!firstImage || !viewport) return 0;
-            const viewportRect = viewport.getBoundingClientRect();
-            const imageRect = firstImage.getBoundingClientRect();
-            return imageRect.top - viewportRect.top + imageRect.height / 2;
-        }
-
-        function updateArrowVerticalPosition() {
-            // Vertically center arrows with the first visible image
-            const firstImage = document.querySelector('.featured-image img');
-            const wrapper = document.querySelector('.carousel-wrapper');
-            if (!firstImage || !wrapper) return;
-            const wrapperRect = wrapper.getBoundingClientRect();
-            const imageRect = firstImage.getBoundingClientRect();
-            // Center with image, but keep arrows outside the image area
-            const offset = imageRect.top - wrapperRect.top + imageRect.height / 2;
-            leftArrow.style.top = rightArrow.style.top = offset + 'px';
-        }
-
-        function updateCarousel() {
-            const itemsPerView = getItemsPerView();
-            const itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(grid).gap) || 0;
-            grid.style.transform = `translateX(-${scrollIndex * itemWidth}px)`;
-            leftArrow.disabled = scrollIndex === 0;
-            rightArrow.disabled = scrollIndex >= items.length - itemsPerView;
-            updateArrowVerticalPosition();
-        }
-
-        leftArrow.addEventListener('click', () => {
-            if (scrollIndex > 0) {
-                scrollIndex--;
-                updateCarousel();
-            }
-        });
-        rightArrow.addEventListener('click', () => {
-            const itemsPerView = getItemsPerView();
-            if (scrollIndex < items.length - itemsPerView) {
-                scrollIndex++;
-                updateCarousel();
-            }
-        });
-        window.addEventListener('resize', () => {
-            // Reset scrollIndex if needed
-            const itemsPerView = getItemsPerView();
-            if (scrollIndex > items.length - itemsPerView) {
-                scrollIndex = Math.max(0, items.length - itemsPerView);
-            }
-            updateCarousel();
-        });
-        window.addEventListener('load', updateArrowVerticalPosition);
-        window.addEventListener('resize', updateArrowVerticalPosition);
-        // Initial update
-        updateCarousel();
-
-        // Hash routing for About page
-        const aboutLink = document.querySelector('.nav-links a[href="./#/about"]');
-        const worksLink = document.querySelector('.nav-links a[href="./#/works"]');
-        const contactLink = document.querySelector('.nav-links a[href="./#/contact"]');
-        const aboutSection = document.querySelector('.about-section');
-        const worksSection = document.querySelector('.works-section');
-        const contactSection = document.querySelector('.contact-section');
-        const heroSection = document.querySelector('.hero');
-        const featuredSection = document.querySelector('.featured');
-        const riaBannerSection = document.querySelector('.ria-banner');
-        const scrollingBannerSection = document.querySelector('.scrolling-banner');
-
-        function showAboutPage() {
-            heroSection.style.display = 'none';
-            featuredSection.style.display = 'none';
-            aboutSection.style.display = 'block';
-            worksSection.style.display = 'none';
-            contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'block';
-            scrollingBannerSection.style.display = 'block'; // Show scrolling banner on About page
-        }
-
-        function showWorksPage() {
-            heroSection.style.display = 'none';
-            featuredSection.style.display = 'none';
-            aboutSection.style.display = 'none';
-            worksSection.style.display = 'block';
-            contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'none';
-            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
-        }
-
-        function showContactPage() {
-            heroSection.style.display = 'none';
-            featuredSection.style.display = 'none';
-            aboutSection.style.display = 'none';
-            worksSection.style.display = 'none';
-            contactSection.style.display = 'block';
-            riaBannerSection.style.display = 'none';
-            scrollingBannerSection.style.display = 'none'; // Hide scrolling banner on other pages
-        }
-
-        function showHomePage() {
-            heroSection.style.display = '';
-            featuredSection.style.display = '';
-            aboutSection.style.display = 'none';
-            worksSection.style.display = 'none';
-            contactSection.style.display = 'none';
-            riaBannerSection.style.display = 'none';
-            scrollingBannerSection.style.display = 'none';
-            // Show stats section on home page
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) statsSection.style.display = '';
-        }
-
-        function handleHashRouting() {
-            const statsSection = document.querySelector('.stats-section');
-            if (location.hash === '#/about') {
-                showAboutPage();
-                // Hide stats section on other pages
-                if (statsSection) statsSection.style.display = 'none';
-            } else if (location.hash === '#/works') {
-                showWorksPage();
-                // Hide stats section on other pages
-                if (statsSection) statsSection.style.display = 'none';
-            } else if (location.hash === '#/contact') {
-                showContactPage();
-                // Hide stats section on other pages
-                if (statsSection) statsSection.style.display = 'none';
-            } else {
-                showHomePage();
-                // Show stats section on home page
-                if (statsSection) statsSection.style.display = '';
-            }
-            toggleNavStyle();
-        }
-
-        aboutLink.addEventListener('click', function(e) {
-            setTimeout(handleHashRouting, 0);
-        });
-
-        worksLink.addEventListener('click', function(e) {
-            setTimeout(handleHashRouting, 0);
-        });
-
-        contactLink.addEventListener('click', function(e) {
-            setTimeout(handleHashRouting, 0);
-        });
-
-        window.addEventListener('hashchange', handleHashRouting);
-        // On page load, show correct section
-        handleHashRouting();
-
-        function toggleNavStyle() {
-            const body = document.body;
-            const hash = location.hash;
-            if (hash === '#/works' || hash === '#/about' || hash === '#/contact') {
-                body.classList.add('dark-mode-nav');
-            } else {
-                body.classList.remove('dark-mode-nav');
-            }
-        }
-
-        // Walmart Carousel Functionality
-        const walmartCarousel = document.getElementById('walmart-carousel');
-        const walmartDots = document.querySelectorAll('#walmart-carousel-pagination .carousel-dot');
-
-        if (walmartCarousel && walmartDots.length > 0) {
-            walmartCarousel.addEventListener('scroll', () => {
-                const scrollLeft = walmartCarousel.scrollLeft;
-                const itemWidth = walmartCarousel.clientWidth;
-                const activeIndex = Math.round(scrollLeft / itemWidth);
-
-                walmartDots.forEach((dot, index) => {
-                    if (index === activeIndex) {
-                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
-                    } else {
-                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
-                    }
-                });
-            });
-
-            walmartDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    const itemWidth = walmartCarousel.clientWidth;
-                    walmartCarousel.scrollTo({
-                        left: index * itemWidth,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-
-    </script>
-
-    <script>
-        // Roblox Carousel Functionality
-        const robloxCarousel = document.getElementById('roblox-carousel');
-        const robloxDots = document.querySelectorAll('#roblox-carousel-pagination .carousel-dot');
-
-        if (robloxCarousel && robloxDots.length > 0) {
-            robloxCarousel.addEventListener('scroll', () => {
-                const scrollLeft = robloxCarousel.scrollLeft;
-                const itemWidth = robloxCarousel.clientWidth;
-                const activeIndex = Math.round(scrollLeft / itemWidth);
-
-                robloxDots.forEach((dot, index) => {
-                    if (index === activeIndex) {
-                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
-                    } else {
-                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
-                    }
-                });
-            });
-
-            robloxDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    const itemWidth = robloxCarousel.clientWidth;
-                    robloxCarousel.scrollTo({
-                        left: index * itemWidth,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-    </script>
-
-    <script>
-        // Mari Carousel Functionality
-        const mariCarousel = document.getElementById('mari-carousel');
-        const mariDots = document.querySelectorAll('#mari-carousel-pagination .carousel-dot');
-
-        if (mariCarousel && mariDots.length > 0) {
-            mariCarousel.addEventListener('scroll', () => {
-                const scrollLeft = mariCarousel.scrollLeft;
-                const itemWidth = mariCarousel.clientWidth;
-                const activeIndex = Math.round(scrollLeft / itemWidth);
-
-                mariDots.forEach((dot, index) => {
-                    if (index === activeIndex) {
-                        dot.style.backgroundColor = '#1A1A1A'; // Active dot color
-                    } else {
-                        dot.style.backgroundColor = '#CCCCCC'; // Inactive dot color
-                    }
-                });
-            });
-
-            mariDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    const itemWidth = mariCarousel.clientWidth;
-                    mariCarousel.scrollTo({
-                        left: index * itemWidth,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-    </script>
-
-    <script>
-        // Stats Typing Effect
-        document.addEventListener('DOMContentLoaded', () => {
-            const stats = [
-                { id: 'stat-items', target: 4, suffix: 'K+' },
-                { id: 'stat-sales', target: 25.5, suffix: 'M+' },
-                { id: 'stat-community', target: 170, suffix: 'K+' }
-            ];
-
-            function animateNumber(element, target, duration, suffix) {
-                const start = 0;
-                let startTime = null;
-
-                function step(currentTime) {
-                    if (!startTime) startTime = currentTime;
-                    const progress = Math.min((currentTime - startTime) / duration, 1);
-                    const value = start + progress * (target - start);
-
-                    if (suffix === 'M+') {
-                         element.textContent = value.toFixed(1) + suffix; // Keep one decimal for Millions
-                    } else {
-                         element.textContent = Math.floor(value) + suffix; // Use whole numbers for Thousands
-                    }
-                   
-
-                    if (progress < 1) {
-                        requestAnimationFrame(step);
-                    } else {
-                         // Ensure the final value is exactly the target formatted
-                         if (suffix === 'M+') {
-                              element.textContent = target.toFixed(1) + suffix;
-                         } else {
-                              element.textContent = target + suffix;
-                         }
-                    }
-                }
-
-                requestAnimationFrame(step);
-            }
-
-            // Assign IDs to the stat elements for easier selection
-            document.querySelector('.stats-section .container .stat-item:nth-child(1) h3').id = 'stat-items';
-            document.querySelector('.stats-section .container .stat-item:nth-child(2) h3').id = 'stat-sales';
-            document.querySelector('.stats-section .container .stat-item:nth-child(3) h3').id = 'stat-community';
-
-            // Start animation for each stat
-            stats.forEach(stat => {
-                const element = document.getElementById(stat.id);
-                if (element) {
-                    animateNumber(element, stat.target, 2000, stat.suffix); // 2000ms = 2 seconds duration
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
-</html> 
+</html>
