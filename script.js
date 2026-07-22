@@ -142,8 +142,9 @@ function initCarousel(carouselId, paginationId) {
     });
 }
 
-initCarousel('walmart-carousel', 'walmart-carousel-pagination');
-initCarousel('mari-carousel',   'mari-carousel-pagination');
+initCarousel('walmart-carousel',      'walmart-carousel-pagination');
+initCarousel('rollingstones-carousel', 'rollingstones-carousel-pagination');
+initCarousel('mari-carousel',         'mari-carousel-pagination');
 
 // Hash routing
 const sections = {
