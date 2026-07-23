@@ -122,24 +122,46 @@ window.addEventListener('resize', () => {
 window.addEventListener('load', updateArrowPosition);
 updateCarousel();
 
-// Inner dot-carousels (Walmart, Mari)
+// Inner dot-carousels + modal arrow carousels
 function initCarousel(carouselId, paginationId) {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
+
     const dots = paginationId
         ? Array.from(document.querySelectorAll(`#${paginationId} .carousel-dot`))
         : [];
-    if (dots.length === 0) return;
 
-    carousel.addEventListener('scroll', () => {
-        const active = Math.round(carousel.scrollLeft / carousel.clientWidth);
-        dots.forEach((d, i) => d.classList.toggle('active', i === active));
-    });
+    const wrap = carousel.parentElement;
+    const prevBtn = wrap?.querySelector('.modal-arrow-prev') ?? null;
+    const nextBtn = wrap?.querySelector('.modal-arrow-next') ?? null;
+    const imageCount = carousel.querySelectorAll('img').length;
+
+    function updateState() {
+        const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        if (prevBtn) prevBtn.disabled = idx === 0;
+        if (nextBtn) nextBtn.disabled = idx >= imageCount - 1;
+    }
+
+    carousel.addEventListener('scroll', updateState, { passive: true });
+
     dots.forEach((dot, i) => {
         dot.addEventListener('click', () => {
             carousel.scrollTo({ left: i * carousel.clientWidth, behavior: 'smooth' });
         });
     });
+
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        carousel.scrollTo({ left: (idx - 1) * carousel.clientWidth, behavior: 'smooth' });
+    });
+
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+        carousel.scrollTo({ left: (idx + 1) * carousel.clientWidth, behavior: 'smooth' });
+    });
+
+    updateState();
 }
 
 initCarousel('modal-walmart-carousel',       'modal-walmart-pagination');
