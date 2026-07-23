@@ -142,10 +142,41 @@ function initCarousel(carouselId, paginationId) {
     });
 }
 
-initCarousel('walmart-carousel',       'walmart-carousel-pagination');
-initCarousel('rollingstones-carousel', 'rollingstones-carousel-pagination');
-initCarousel('hugo-carousel',          'hugo-carousel-pagination');
-initCarousel('mari-carousel',          'mari-carousel-pagination');
+initCarousel('modal-walmart-carousel',       'modal-walmart-pagination');
+initCarousel('modal-rollingstones-carousel', 'modal-rollingstones-pagination');
+initCarousel('modal-hugo-carousel',          'modal-hugo-pagination');
+initCarousel('mari-carousel',                'mari-carousel-pagination');
+
+// Works page — brand collab modals
+function openWorksModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWorksModal(modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.works-card[data-modal]').forEach(card => {
+    card.addEventListener('click', () => openWorksModal(card.dataset.modal));
+    card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') openWorksModal(card.dataset.modal);
+    });
+});
+
+document.querySelectorAll('.works-modal').forEach(modal => {
+    modal.querySelector('.works-modal-backdrop')?.addEventListener('click', () => closeWorksModal(modal));
+    modal.querySelector('.works-modal-close')?.addEventListener('click', () => closeWorksModal(modal));
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.works-modal.open').forEach(m => closeWorksModal(m));
+    }
+});
 
 // Hash routing
 const sections = {
@@ -184,6 +215,8 @@ function handleRouting() {
               : hash === '#/works'   ? 'works'
               : hash === '#/contact' ? 'contact'
               : 'home';
+
+    document.querySelectorAll('.works-modal.open').forEach(m => closeWorksModal(m));
 
     Object.entries(layouts[key]).forEach(([k, display]) => {
         if (sections[k]) sections[k].style.display = display;

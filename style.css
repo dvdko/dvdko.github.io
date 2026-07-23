@@ -672,54 +672,216 @@ html {
 
 .works-section .section-title { padding-top: 2rem; }
 
-/* Two-column collab layout */
-.collab-layout {
+/* Brand collabs grid */
+.works-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 4rem;
-    align-items: start;
-    padding-bottom: 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin-bottom: 0;
 }
 
-.collab-col ul {
+.works-card {
+    cursor: pointer;
+    background: var(--shop-card);
+    border-radius: var(--shop-radius);
+    border: 1px solid var(--shop-border);
+    box-shadow: var(--shop-shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.works-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shop-shadow-hover);
+}
+
+.works-card-image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--shop-bg);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+.works-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.works-card:hover .works-card-image img { transform: scale(1.04); }
+
+.works-card-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.works-card:hover .works-card-hover { opacity: 1; }
+
+.works-card-info {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--shop-border);
+}
+
+.works-card-brand {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--shop-text);
+}
+
+/* Brand collab modals */
+.works-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.works-modal.open { display: flex; }
+
+.works-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.works-modal-card {
+    position: relative;
+    background: var(--shop-card);
+    border-radius: 12px;
+    width: min(880px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.works-modal-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 1.1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: var(--shop-muted);
+    line-height: 1;
+    z-index: 2;
+    padding: 0.25rem;
+    transition: color 0.15s;
+}
+
+.works-modal-close:hover { color: var(--shop-text); }
+
+.works-modal-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.works-modal-media {
+    background: var(--shop-bg);
+    border-radius: 12px 0 0 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 320px;
+}
+
+.works-modal-media img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    display: block;
+}
+
+.works-modal-text {
+    padding: 2.5rem 2.25rem 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.works-modal-text h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--shop-text);
+    margin: 0 0 1.25rem;
+    padding-right: 2rem;
+}
+
+.works-modal-text ul {
     list-style: disc;
     padding-left: 1.25rem;
     margin: 0;
 }
 
-.collab-col ul li {
-    font-size: 0.975rem;
+.works-modal-text li {
+    font-size: 0.93rem;
     color: var(--shop-body);
     line-height: 1.75;
     padding: 0.3rem 0;
 }
 
-.collab-col ul li::marker { color: var(--shop-text); }
+.works-modal-text li::marker { color: var(--shop-text); }
 
-/* Media column */
-.collab-media {
+/* Modal carousel */
+.modal-carousel {
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.collab-media img {
-    width: 100%;
-    height: auto;
-    display: block;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     border-radius: var(--shop-radius);
-    border: 1px solid var(--shop-border);
+    width: 100%;
 }
 
-/* Inner dot-carousel inside collab-media */
+.modal-carousel::-webkit-scrollbar { display: none; }
+
+.modal-carousel img {
+    min-width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    scroll-snap-align: start;
+    display: block;
+}
+
+/* Inner dot-carousel (used in Other Collabs cards) */
 .collab-carousel {
     display: flex;
-    overflow-x: hidden;
+    overflow-x: scroll;
     scroll-snap-type: x mandatory;
     border-radius: var(--shop-radius);
     border: 1px solid var(--shop-border);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+
+.collab-carousel::-webkit-scrollbar { display: none; }
 
 .collab-carousel img {
     min-width: 100%;
@@ -1231,7 +1393,10 @@ body.dark-mode-nav .social-links a:hover { color: var(--accent-secondary); }
     .about-section,
     .works-section  { padding: 5rem 0 4rem; }
 
-    .collab-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+    .works-grid    { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+    .works-modal-inner { grid-template-columns: 1fr; }
+    .works-modal-media { border-radius: 12px 12px 0 0; min-height: 220px; }
 
     .collab-cards  { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .works-gallery { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
